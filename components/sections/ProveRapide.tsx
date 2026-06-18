@@ -29,7 +29,7 @@ export default function ProveRapide() {
         >
           <div
             className="max-w-6xl mx-auto px-5"
-            style={{ paddingTop: "52px", paddingBottom: "52px" }}
+            style={{ paddingTop: "32px", paddingBottom: "32px" }}
           >
             <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:gap-10">
               <span
