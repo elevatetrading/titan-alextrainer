@@ -48,9 +48,9 @@ export default function Hero() {
             textShadow: "0 2px 20px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.4)",
           }}
         >
-          Il corpo è il tuo primo asset.{" "}
+          Testa libera. Corpo forte.{" "}
           <span style={{ color: "var(--green-cta)" }}>
-            Allenalo come gestisci l&apos;azienda.
+            Allenati come gestisci l&apos;azienda.
           </span>
         </h1>
 
