@@ -116,6 +116,13 @@ body {
 }
 
 
+/* Spazio per la barra CTA mobile in stato espanso */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 /* Card prezzo in rilievo — solo da desktop */
 .card-featured {
   transform: none;
