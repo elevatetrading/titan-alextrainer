@@ -49,7 +49,8 @@ export default function LeVoci() {
             color: "var(--text)",
           }}
         >
-          Cosa dicono i clienti
+          Cosa dicono{" "}
+          <span style={{ color: "var(--green-cta)" }}>i clienti</span>
         </h2>
       </div>
       </FadeUp>

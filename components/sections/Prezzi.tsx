@@ -47,7 +47,8 @@ export default function Prezzi() {
               color: "var(--text)",
             }}
           >
-            Due percorsi, stesso metodo.
+            Due percorsi,{" "}
+            <span style={{ color: "var(--green-cta)" }}>stesso metodo.</span>
           </h2>
           <p
             className="text-base leading-relaxed"

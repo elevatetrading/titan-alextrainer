@@ -89,7 +89,8 @@ export default function PrimaSessione() {
             color: "var(--text)",
           }}
         >
-          Prenota. Poi decidi tu.
+          Prenota.{" "}
+          <span style={{ color: "var(--green-cta)" }}>Poi decidi tu.</span>
         </h2>
         <p
           className="text-base leading-relaxed mb-10"

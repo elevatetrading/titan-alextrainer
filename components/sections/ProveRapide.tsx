@@ -3,19 +3,22 @@ import FadeUp from "@/components/ui/FadeUp";
 const prove = [
   {
     num: "01",
-    title: "Solo 1-to-1",
+    title: "Solo",
+    titleGreen: "1-to-1",
     body: "L'ora è tua. Nessun gruppo, nessuna attesa, nessuna distrazione.",
     bg: "var(--green-deep)",
   },
   {
     num: "02",
-    title: "Posti limitati",
+    title: "Posti",
+    titleGreen: "limitati",
     body: "Seguo pochi atleti per volta. Così ogni percorso è davvero su misura.",
     bg: "var(--bg-base)",
   },
   {
     num: "03",
-    title: "Olbia Sporting Club",
+    title: "Olbia",
+    titleGreen: "Sporting Club",
     body: "Struttura completa. L'abbonamento è già incluso nel pacchetto.",
     bg: "var(--green-deep)",
   },
@@ -50,7 +53,8 @@ export default function ProveRapide() {
                   className="font-archivo text-xl leading-snug mb-2"
                   style={{ color: "var(--text)" }}
                 >
-                  {p.title}
+                  {p.title}{" "}
+                  <span style={{ color: "var(--green-cta)" }}>{p.titleGreen}</span>
                 </h3>
                 <p
                   className="text-sm leading-relaxed"

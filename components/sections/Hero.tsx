@@ -79,7 +79,7 @@ export default function Hero() {
               transition: "background-color 200ms ease",
             }}
           >
-            Prenota la sessione gratuita
+            Prenota la tua sessione gratuita
           </a>
           <a
             href="#metodo"
