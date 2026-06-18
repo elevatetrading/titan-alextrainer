@@ -18,7 +18,7 @@ export default function Hero() {
           style={{
             objectFit: "cover",
             objectPosition: "55% 25%",
-            filter: "blur(2px)",
+            filter: "blur(1px)",
             transform: "scale(1.04)",
           }}
           sizes="100vw"

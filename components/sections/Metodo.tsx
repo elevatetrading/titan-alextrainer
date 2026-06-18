@@ -77,17 +77,20 @@ export default function Metodo() {
     >
       {/* Intro */}
       <div className="max-w-6xl mx-auto px-5">
+        {/* Brand name — grande e centrato */}
+        <p
+          className="font-headline text-center mb-10"
+          style={{
+            fontSize: "clamp(2.75rem, 10vw, 6rem)",
+            color: "var(--text)",
+            letterSpacing: "-0.02em",
+          }}
+        >
+          Il Metodo{" "}
+          <span style={{ color: "var(--green-cta)" }}>Titan</span>
+        </p>
+
         <div className="max-w-2xl mb-12">
-          <p
-            className="text-xs uppercase tracking-widest mb-4"
-            style={{
-              color: "var(--green-cta)",
-              fontFamily: "var(--font-hanken)",
-              fontWeight: 600,
-            }}
-          >
-            Il Metodo Titan
-          </p>
           <h2
             className="font-archivo leading-tight mb-4"
             style={{
