@@ -14,7 +14,8 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main>
+      {/* pb-16 su mobile lascia spazio alla barra CTA fissa in basso */}
+      <main className="pb-16 md:pb-0">
         <Hero />
         <ProveRapide />
         <Metodo />
