@@ -6,24 +6,24 @@ export default function CtaBar() {
   const [visible, setVisible] = useState(false);
   const [compact, setCompact] = useState(false);
   const lastScrollY = useRef(0);
-  // Ref per evitare stale closure nell'observer
-  const state = useRef({ pastHero: false, nearFooter: false });
+  const state = useRef({ pastHero: false, atContatti: false });
 
   useEffect(() => {
     const hero = document.getElementById("hero");
-    const footer = document.getElementById("site-footer");
-    if (!hero || !footer) return;
+    const contatti = document.getElementById("contatti");
+    if (!hero || !contatti) return;
+
+    const heroEl = hero as HTMLElement;
 
     function sync() {
-      setVisible(state.current.pastHero && !state.current.nearFooter);
+      setVisible(state.current.pastHero && !state.current.atContatti);
     }
 
-    // Hero — scroll event (più affidabile dell'observer al top su iOS rubber-band)
+    // Scroll: traccia hero + compact
     function onScroll() {
-      state.current.pastHero = hero!.getBoundingClientRect().bottom < 0;
+      state.current.pastHero = heroEl.getBoundingClientRect().bottom < 0;
       sync();
 
-      // Compact: si rimpicciolisce scrollando verso su
       const y = window.scrollY;
       if (y < lastScrollY.current - 8) setCompact(true);
       else if (y > lastScrollY.current + 8) setCompact(false);
@@ -33,21 +33,21 @@ export default function CtaBar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
 
-    // Footer — IntersectionObserver con 500px di anticipo
-    // rootMargin "0px 0px 500px 0px" espande il viewport di 500px in basso:
-    // il footer risulta "intersecting" già 500px prima di entrare nello schermo.
-    const footerObserver = new IntersectionObserver(
+    // Nasconde quando #contatti entra in viewport (10% visibile).
+    // A quel punto il bottone è già inutile — l'utente è arrivato al form.
+    // Questo è sopra il footer, quindi i link del footer non vengono mai coperti.
+    const observer = new IntersectionObserver(
       ([entry]) => {
-        state.current.nearFooter = entry.isIntersecting;
+        state.current.atContatti = entry.isIntersecting;
         sync();
       },
-      { rootMargin: "0px 0px 500px 0px", threshold: 0 }
+      { threshold: 0.1 }
     );
-    footerObserver.observe(footer);
+    observer.observe(contatti);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      footerObserver.disconnect();
+      observer.disconnect();
     };
   }, []);
 
