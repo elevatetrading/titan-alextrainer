@@ -1,46 +1,136 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:is(.dark *));
-
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-base: #0A0C0B;
+  --surface: #0F1311;
+  --surface-2: #141815;
+  --green-cta: #1F7A52;
+  --green-cta-hover: #248C5E;
+  --green-deep: #0E3B2A;
+  --green-deep-2: #0A2C20;
+  --text: #F2F4F1;
+  --text-muted: #97A29B;
+  --hairline: #202622;
+  --on-cta: #06120D;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --animate-marquee: marquee var(--duration) infinite linear;
-  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
-  @keyframes marquee {
-  from {
-    transform: translateX(0);
-    }
-  to {
-    transform: translateX(calc(-100% - var(--gap)));
-    }
-  }
-  @keyframes marquee-vertical {
-  from {
-    transform: translateY(0);
-    }
-  to {
-    transform: translateY(calc(-100% - var(--gap)));
-    }
-  }
+  --color-bg-base: var(--bg-base);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-green-cta: var(--green-cta);
+  --color-green-cta-hover: var(--green-cta-hover);
+  --color-green-deep: var(--green-deep);
+  --color-green-deep-2: var(--green-deep-2);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-hairline: var(--hairline);
+  --color-on-cta: var(--on-cta);
+  --font-archivo: var(--font-archivo);
+  --font-hanken: var(--font-hanken);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-base);
+  color: var(--text);
+  font-family: var(--font-hanken), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Archivo headline utility — expanded + heavy */
+.font-headline {
+  font-family: var(--font-archivo), sans-serif;
+  font-weight: 800;
+  font-stretch: expanded;
+  letter-spacing: -0.02em;
+}
+
+/* Archivo sezioni H2/H3 */
+.font-archivo {
+  font-family: var(--font-archivo), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* CTA primaria — massa solida */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--green-cta);
+  color: var(--on-cta);
+  font-family: var(--font-archivo), sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  height: 56px;
+  border-radius: 6px;
+  padding: 0 2rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 150ms ease, transform 150ms ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.btn-cta:hover {
+  background-color: var(--green-cta-hover);
+  transform: translateY(-2px);
+}
+
+.btn-cta:active {
+  transform: translateY(0);
+}
+
+.btn-cta:disabled,
+.btn-cta[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Spaziatura sezioni */
+.section-pad {
+  padding-top: 72px;
+  padding-bottom: 72px;
+}
+
+@media (min-width: 768px) {
+  .section-pad {
+    padding-top: 128px;
+    padding-bottom: 128px;
+  }
+}
+
+/* Card prezzo in rilievo — solo da desktop */
+.card-featured {
+  transform: none;
+}
+
+@media (min-width: 768px) {
+  .card-featured {
+    transform: translateY(-8px);
+  }
+}
+
+/* Nasconde scrollbar nel carosello */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
