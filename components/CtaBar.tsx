@@ -60,22 +60,20 @@ export default function CtaBar() {
           textDecoration: "none",
           fontFamily: "var(--font-archivo)",
           fontWeight: 700,
-          letterSpacing: compact ? 0 : "0.06em",
+          letterSpacing: "0.06em",
           textTransform: "uppercase",
-          /* pill → cerchio */
-          width: compact ? "56px" : "100%",
+          width: compact ? "130px" : "100%",
           height: "56px",
-          borderRadius: compact ? "50%" : "10px",
-          /* testo → emoji */
-          fontSize: compact ? "1.5rem" : "0.875rem",
+          borderRadius: "10px",
+          fontSize: compact ? "0.75rem" : "0.875rem",
           whiteSpace: "nowrap",
           overflow: "hidden",
           boxShadow: "0 6px 28px rgba(0,0,0,0.45)",
           transition:
-            "width 320ms cubic-bezier(0.4, 0, 0.2, 1), border-radius 320ms ease, font-size 200ms ease",
+            "width 350ms cubic-bezier(0.4, 0, 0.2, 1), font-size 200ms ease",
         }}
       >
-        {compact ? "🏋️" : "Richiedi la tua lezione"}
+        {compact ? "PRENOTA" : "Richiedi la tua lezione"}
       </a>
     </div>
   );
