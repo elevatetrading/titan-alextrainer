@@ -5,8 +5,19 @@ import FadeUp from "@/components/ui/FadeUp";
 
 const opzioni = ["Titan8", "Titan12", "Non so ancora"];
 
+const prefissi = [
+  { flag: "🇮🇹", code: "+39" },
+  { flag: "🇨🇭", code: "+41" },
+  { flag: "🇩🇪", code: "+49" },
+  { flag: "🇫🇷", code: "+33" },
+  { flag: "🇬🇧", code: "+44" },
+  { flag: "🇪🇸", code: "+34" },
+  { flag: "🇺🇸", code: "+1" },
+];
+
 export default function PrimaSessione() {
   const [form, setForm] = useState({ nome: "", telefono: "", pacchetto: "" });
+  const [prefix, setPrefix] = useState("+39");
   const [gdpr, setGdpr] = useState(false);
   const [sent, setSent] = useState(false);
 
@@ -18,7 +29,7 @@ export default function PrimaSessione() {
     const msg = [
       `Ciao Alessandro! Sono ${form.nome.trim()}, ti contatto dal sito alextrainer.it per richiedere la sessione gratuita.`,
       `Pacchetto di interesse: ${form.pacchetto || "Non specificato"}`,
-      `Il mio telefono: ${form.telefono.trim()}`,
+      `Il mio telefono: ${prefix} ${form.telefono.trim()}`,
     ].join("\n");
     window.open(
       `https://wa.me/393445734327?text=${encodeURIComponent(msg)}`,
@@ -78,7 +89,7 @@ export default function PrimaSessione() {
             color: "var(--text)",
           }}
         >
-          La prima sessione è gratis
+          Prenota. Poi decidi tu.
         </h2>
         <p
           className="text-base leading-relaxed mb-10"
@@ -147,23 +158,71 @@ export default function PrimaSessione() {
               <label htmlFor="telefono" style={labelStyle}>
                 Telefono
               </label>
-              <input
-                id="telefono"
-                type="tel"
-                required
-                placeholder="+39 344 ..."
-                value={form.telefono}
-                onChange={(e) => setForm({ ...form, telefono: e.target.value })}
-                style={inputStyle}
-                onFocus={(e) =>
-                  ((e.target as HTMLInputElement).style.borderColor =
-                    "var(--green-cta)")
+              <div
+                style={{
+                  display: "flex",
+                  height: "52px",
+                  backgroundColor: "var(--surface)",
+                  border: "1px solid var(--hairline)",
+                  borderRadius: "6px",
+                  overflow: "hidden",
+                  transition: "border-color 150ms ease",
+                }}
+                onFocusCapture={(e) =>
+                  ((e.currentTarget as HTMLDivElement).style.borderColor = "var(--green-cta)")
                 }
-                onBlur={(e) =>
-                  ((e.target as HTMLInputElement).style.borderColor =
-                    "var(--hairline)")
-                }
-              />
+                onBlurCapture={(e) => {
+                  if (!e.currentTarget.contains(e.relatedTarget as Node))
+                    (e.currentTarget as HTMLDivElement).style.borderColor = "var(--hairline)";
+                }}
+              >
+                {/* Flag + prefisso */}
+                <select
+                  value={prefix}
+                  onChange={(e) => setPrefix(e.target.value)}
+                  aria-label="Prefisso internazionale"
+                  style={{
+                    height: "100%",
+                    padding: "0 0.625rem",
+                    backgroundColor: "transparent",
+                    border: "none",
+                    borderRight: "1px solid var(--hairline)",
+                    color: "var(--text)",
+                    fontFamily: "var(--font-hanken)",
+                    fontSize: "0.9rem",
+                    cursor: "pointer",
+                    outline: "none",
+                    flexShrink: 0,
+                    appearance: "none",
+                    WebkitAppearance: "none",
+                  }}
+                >
+                  {prefissi.map((p) => (
+                    <option key={p.code} value={p.code} style={{ backgroundColor: "#1a1d1c" }}>
+                      {p.flag} {p.code}
+                    </option>
+                  ))}
+                </select>
+                <input
+                  id="telefono"
+                  type="tel"
+                  required
+                  placeholder="344 573 4327"
+                  value={form.telefono}
+                  onChange={(e) => setForm({ ...form, telefono: e.target.value })}
+                  style={{
+                    flex: 1,
+                    height: "100%",
+                    backgroundColor: "transparent",
+                    border: "none",
+                    color: "var(--text)",
+                    fontFamily: "var(--font-hanken)",
+                    fontSize: "1rem",
+                    padding: "0 1rem",
+                    outline: "none",
+                  }}
+                />
+              </div>
             </div>
 
             {/* Pacchetto — pill selector */}

@@ -81,7 +81,7 @@ export default function Metodo() {
         {/* Brand name — grande e centrato */}
         <FadeUp delay={0}>
         <p
-          className="font-headline text-center mb-10"
+          className="font-headline text-center mb-5"
           style={{
             fontSize: "clamp(2.75rem, 10vw, 6rem)",
             color: "var(--text)",
