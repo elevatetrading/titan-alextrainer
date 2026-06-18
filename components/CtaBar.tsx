@@ -32,30 +32,51 @@ export default function CtaBar() {
   }, []);
 
   return (
-    <a
-      href="#contatti"
-      className="md:hidden fixed left-4 right-4"
+    /* Wrapper: gestisce lo slide-up dal basso con spring */
+    <div
+      className="md:hidden fixed left-0 right-0"
       style={{
         bottom: "calc(1rem + env(safe-area-inset-bottom, 0px))",
-        display: visible ? "flex" : "none",
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "var(--green-cta)",
-        color: "var(--on-cta)",
-        fontFamily: "var(--font-archivo)",
-        fontWeight: 700,
-        fontSize: compact ? "0.75rem" : "0.9rem",
-        letterSpacing: "0.06em",
-        textTransform: "uppercase",
-        textDecoration: "none",
-        height: compact ? "42px" : "54px",
-        borderRadius: "10px",
-        boxShadow: "0 4px 24px rgba(0,0,0,0.5)",
         zIndex: 50,
-        transition: "height 250ms ease, font-size 200ms ease",
+        display: "flex",
+        justifyContent: "center",
+        padding: "0 1rem",
+        /* slide-up con overshoot leggero: parte da sotto lo schermo */
+        transform: visible ? "translateY(0)" : "translateY(calc(100% + 4rem))",
+        transition: visible
+          ? "transform 520ms cubic-bezier(0.34, 1.4, 0.64, 1)"
+          : "transform 300ms ease-in",
+        pointerEvents: visible ? "auto" : "none",
       }}
     >
-      Richiedi la tua lezione
-    </a>
+      <a
+        href="#contatti"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: "var(--green-cta)",
+          color: "var(--on-cta)",
+          textDecoration: "none",
+          fontFamily: "var(--font-archivo)",
+          fontWeight: 700,
+          letterSpacing: compact ? 0 : "0.06em",
+          textTransform: "uppercase",
+          /* pill → cerchio */
+          width: compact ? "56px" : "100%",
+          height: "56px",
+          borderRadius: compact ? "50%" : "10px",
+          /* testo → emoji */
+          fontSize: compact ? "1.5rem" : "0.875rem",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          boxShadow: "0 6px 28px rgba(0,0,0,0.45)",
+          transition:
+            "width 320ms cubic-bezier(0.4, 0, 0.2, 1), border-radius 320ms ease, font-size 200ms ease",
+        }}
+      >
+        {compact ? "🏋️" : "Richiedi la tua lezione"}
+      </a>
+    </div>
   );
 }
