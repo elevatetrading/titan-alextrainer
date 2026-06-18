@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function Hero() {
   return (
     <section
@@ -5,50 +7,37 @@ export default function Hero() {
       className="relative flex flex-col justify-end overflow-hidden"
       style={{ minHeight: "100svh", backgroundColor: "var(--bg-base)" }}
     >
-      {/* Sfondo placeholder — sostituire con foto reale di Ale */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(160deg, var(--green-deep-2) 0%, rgba(10,12,11,0.4) 50%, var(--bg-base) 100%)",
-        }}
-        aria-hidden="true"
-      >
-        {/* Trama atmosferica */}
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 30% 40%, var(--green-cta) 0%, transparent 60%)",
-          }}
+      {/* Foto reale di Alessandro */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <Image
+          src="/alex-hero.jpg"
+          alt="Alessandro Giua — personal trainer a Olbia"
+          fill
+          priority
+          quality={90}
+          style={{ objectFit: "cover", objectPosition: "center top" }}
+          sizes="100vw"
         />
-        {/* Label placeholder — rimuovere con la foto reale */}
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center opacity-[0.12] pointer-events-none select-none"
-          style={{ color: "var(--text-muted)" }}
-        >
-          <p
-            className="text-xs uppercase tracking-widest mb-1"
-            style={{ fontFamily: "var(--font-hanken)" }}
-          >
-            FOTO HERO
-          </p>
-          <p
-            className="text-xs"
-            style={{ fontFamily: "var(--font-hanken)" }}
-          >
-            Alessandro — verticale, ≥2000px
-          </p>
-        </div>
       </div>
 
-      {/* Gradiente bottom — testo sopra la foto */}
+      {/* Gradiente bottom — garantisce leggibilità del testo */}
       <div
         className="absolute inset-x-0 bottom-0 pointer-events-none"
         style={{
-          height: "75%",
+          height: "80%",
           background:
-            "linear-gradient(to top, var(--bg-base) 0%, var(--bg-base) 15%, rgba(10,12,11,0.85) 50%, transparent 100%)",
+            "linear-gradient(to top, var(--bg-base) 0%, var(--bg-base) 18%, rgba(10,12,11,0.88) 55%, rgba(10,12,11,0.3) 80%, transparent 100%)",
+        }}
+        aria-hidden="true"
+      />
+
+      {/* Gradiente top — sfuma il cielo verso scuro */}
+      <div
+        className="absolute inset-x-0 top-0 pointer-events-none"
+        style={{
+          height: "30%",
+          background:
+            "linear-gradient(to bottom, rgba(10,12,11,0.55) 0%, transparent 100%)",
         }}
         aria-hidden="true"
       />
