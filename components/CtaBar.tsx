@@ -19,7 +19,7 @@ export default function CtaBar() {
 
       // Visibile solo dopo la hero E quando il footer è ancora lontano 160px
       const afterHero = heroBottom < 0;
-      const beforeFooter = footerTop > vh + 160;
+      const beforeFooter = footerTop > vh + 400;
 
       setVisible(afterHero && beforeFooter);
 
