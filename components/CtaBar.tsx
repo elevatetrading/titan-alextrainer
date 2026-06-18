@@ -34,7 +34,7 @@ export default function CtaBar() {
           footerVisible.current = entry.isIntersecting;
           sync();
         },
-        { threshold: 0 }
+        { threshold: 0, rootMargin: "0px 0px 120px 0px" }
       );
       footerObserver.observe(footer);
     }
