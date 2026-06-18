@@ -32,42 +32,30 @@ export default function CtaBar() {
   }, []);
 
   return (
-    /* Wrapper trasparente — non tocca mai i bordi dello schermo */
-    <div
-      className="fixed bottom-0 left-0 right-0 z-50 md:hidden"
+    <a
+      href="#contatti"
+      className="md:hidden fixed left-4 right-4"
       style={{
-        transform: visible ? "translateY(0)" : "translateY(110%)",
-        transition: "transform 300ms ease",
-        padding: compact
-          ? "0.5rem 1.25rem calc(0.75rem + env(safe-area-inset-bottom, 0px))"
-          : "0.5rem 1rem calc(0.625rem + env(safe-area-inset-bottom, 0px))",
-        backgroundColor: "transparent",
-        pointerEvents: visible ? "auto" : "none",
+        bottom: "calc(1rem + env(safe-area-inset-bottom, 0px))",
+        display: visible ? "flex" : "none",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "var(--green-cta)",
+        color: "var(--on-cta)",
+        fontFamily: "var(--font-archivo)",
+        fontWeight: 700,
+        fontSize: compact ? "0.75rem" : "0.9rem",
+        letterSpacing: "0.06em",
+        textTransform: "uppercase",
+        textDecoration: "none",
+        height: compact ? "42px" : "54px",
+        borderRadius: "10px",
+        boxShadow: "0 4px 24px rgba(0,0,0,0.5)",
+        zIndex: 50,
+        transition: "height 250ms ease, font-size 200ms ease",
       }}
     >
-      <a
-        href="#contatti"
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "100%",
-          backgroundColor: "var(--green-cta)",
-          color: "var(--on-cta)",
-          fontFamily: "var(--font-archivo)",
-          fontWeight: 700,
-          fontSize: compact ? "0.75rem" : "0.9rem",
-          letterSpacing: "0.06em",
-          textTransform: "uppercase",
-          textDecoration: "none",
-          height: compact ? "42px" : "54px",
-          borderRadius: "10px",
-          boxShadow: "0 4px 24px rgba(0,0,0,0.5)",
-          transition: "height 250ms ease, font-size 200ms ease",
-        }}
-      >
-        Richiedi la tua lezione
-      </a>
-    </div>
+      Richiedi la tua lezione
+    </a>
   );
 }
