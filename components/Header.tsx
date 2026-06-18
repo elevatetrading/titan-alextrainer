@@ -59,7 +59,7 @@ export default function Header() {
             className="btn-cta"
             style={{ height: "38px", fontSize: "0.75rem", padding: "0 1.25rem" }}
           >
-            Prenota
+            Richiedi la tua lezione gratuita
           </a>
         </nav>
 
@@ -131,7 +131,7 @@ export default function Header() {
             onClick={() => setOpen(false)}
             className="btn-cta w-full mt-4"
           >
-            Prenota
+            Richiedi la tua lezione gratuita
           </a>
         </nav>
       </div>

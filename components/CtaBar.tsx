@@ -90,7 +90,7 @@ export default function CtaBar() {
           transition: "width 350ms cubic-bezier(0.4, 0, 0.2, 1), font-size 200ms ease",
         }}
       >
-        {compact ? "PRENOTA" : "Richiedi la tua lezione"}
+        {compact ? "PRENOTA" : "Richiedi la tua lezione gratuita"}
       </a>
     </div>
   );
