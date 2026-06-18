@@ -6,33 +6,49 @@ export default function CtaBar() {
   const [visible, setVisible] = useState(false);
   const [compact, setCompact] = useState(false);
   const lastScrollY = useRef(0);
+  // Ref per evitare stale closure nell'observer
+  const state = useRef({ pastHero: false, nearFooter: false });
 
   useEffect(() => {
-    const update = () => {
-      const hero = document.getElementById("hero");
-      const footer = document.getElementById("site-footer");
-      if (!hero || !footer) return;
+    const hero = document.getElementById("hero");
+    const footer = document.getElementById("site-footer");
+    if (!hero || !footer) return;
 
-      const vh = window.innerHeight;
-      const heroBottom = hero.getBoundingClientRect().bottom;
-      const footerTop = footer.getBoundingClientRect().top;
+    function sync() {
+      setVisible(state.current.pastHero && !state.current.nearFooter);
+    }
 
-      // Visibile solo dopo la hero E quando il footer è ancora lontano 160px
-      const afterHero = heroBottom < 0;
-      const beforeFooter = footerTop > vh + 400;
+    // Hero — scroll event (più affidabile dell'observer al top su iOS rubber-band)
+    function onScroll() {
+      state.current.pastHero = hero.getBoundingClientRect().bottom < 0;
+      sync();
 
-      setVisible(afterHero && beforeFooter);
+      // Compact: si rimpicciolisce scrollando verso su
+      const y = window.scrollY;
+      if (y < lastScrollY.current - 8) setCompact(true);
+      else if (y > lastScrollY.current + 8) setCompact(false);
+      lastScrollY.current = y;
+    }
 
-      // Compact: scrollando su
-      const currentY = window.scrollY;
-      if (currentY < lastScrollY.current - 8) setCompact(true);
-      else if (currentY > lastScrollY.current + 8) setCompact(false);
-      lastScrollY.current = currentY;
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    // Footer — IntersectionObserver con 500px di anticipo
+    // rootMargin "0px 0px 500px 0px" espande il viewport di 500px in basso:
+    // il footer risulta "intersecting" già 500px prima di entrare nello schermo.
+    const footerObserver = new IntersectionObserver(
+      ([entry]) => {
+        state.current.nearFooter = entry.isIntersecting;
+        sync();
+      },
+      { rootMargin: "0px 0px 500px 0px", threshold: 0 }
+    );
+    footerObserver.observe(footer);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      footerObserver.disconnect();
     };
-
-    window.addEventListener("scroll", update, { passive: true });
-    update(); // check iniziale
-    return () => window.removeEventListener("scroll", update);
   }, []);
 
   return (
