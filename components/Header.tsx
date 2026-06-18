@@ -13,25 +13,36 @@ function Lines({ open }: { open: boolean }) {
   return (
     <>
       <span
-        className="block w-6 h-[1.5px] transition-all duration-200 origin-center"
         style={{
+          display: "block",
+          width: "24px",
+          height: "1.5px",
           backgroundColor: "var(--text)",
+          transformOrigin: "center",
           transform: open ? "rotate(45deg) translateY(6.5px)" : "none",
+          transition: "transform 200ms ease",
         }}
       />
       <span
-        className="block w-6 h-[1.5px] transition-all duration-200"
         style={{
+          display: "block",
+          width: "24px",
+          height: "1.5px",
           backgroundColor: "var(--text)",
           opacity: open ? 0 : 1,
           transform: open ? "scaleX(0)" : "none",
+          transition: "opacity 200ms ease, transform 200ms ease",
         }}
       />
       <span
-        className="block w-6 h-[1.5px] transition-all duration-200 origin-center"
         style={{
+          display: "block",
+          width: "24px",
+          height: "1.5px",
           backgroundColor: "var(--text)",
+          transformOrigin: "center",
           transform: open ? "rotate(-45deg) translateY(-6.5px)" : "none",
+          transition: "transform 200ms ease",
         }}
       />
     </>
@@ -41,13 +52,10 @@ function Lines({ open }: { open: boolean }) {
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [hidden, setHidden] = useState(false);
 
   useEffect(() => {
     function onScroll() {
-      const y = window.scrollY;
-      setScrolled(y > 12);
-      setHidden(y > 80);
+      setScrolled(window.scrollY > 60);
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -55,21 +63,18 @@ export default function Header() {
 
   return (
     <>
-      {/* ── Barra header — trasparente in cima, sparisce allo scroll ── */}
+      {/* ── Desktop header ── */}
       <header
-        className="fixed top-0 left-0 right-0 z-50"
+        className="hidden md:block fixed top-0 left-0 right-0 z-50"
         style={{
           backgroundColor: scrolled ? "rgba(10,12,11,0.88)" : "transparent",
           backdropFilter: scrolled ? "blur(14px)" : "none",
           WebkitBackdropFilter: scrolled ? "blur(14px)" : "none",
           borderBottom: scrolled ? "1px solid var(--hairline)" : "none",
-          transform: hidden ? "translateY(-100%)" : "translateY(0)",
-          transition:
-            "transform 380ms cubic-bezier(0.4,0,0.2,1), background-color 280ms ease, border-color 280ms ease",
+          transition: "background-color 280ms ease, border-color 280ms ease",
         }}
       >
         <div className="max-w-6xl mx-auto px-5 flex items-center justify-between h-14">
-          {/* Logo */}
           <a
             href="/"
             className="font-headline text-xl tracking-widest"
@@ -77,14 +82,12 @@ export default function Header() {
           >
             TITAN
           </a>
-
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="flex items-center gap-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium"
+                className="text-sm"
                 style={{
                   color: "var(--text-muted)",
                   fontFamily: "var(--font-hanken)",
@@ -109,40 +112,38 @@ export default function Header() {
               Richiedi la tua lezione gratuita
             </a>
           </nav>
-
-          {/* Hamburger dentro la barra (mobile) — sparisce con la barra */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden flex flex-col justify-center gap-[5px] p-2 -mr-2"
-            aria-label={open ? "Chiudi menu" : "Apri menu"}
-            aria-expanded={open}
-            style={{
-              opacity: hidden ? 0 : 1,
-              pointerEvents: hidden ? "none" : "auto",
-              transition: "opacity 150ms ease",
-            }}
-          >
-            <Lines open={open} />
-          </button>
         </div>
       </header>
 
-      {/* ── Hamburger flottante — appare solo quando la barra è nascosta ── */}
+      {/* ── Mobile: TITAN — galleggia sull'hero, sparisce dopo scroll ── */}
+      <a
+        href="/"
+        className="md:hidden fixed z-[60] font-headline tracking-widest"
+        style={{
+          top: "0.875rem",
+          left: "1.25rem",
+          fontSize: "1.25rem",
+          color: "var(--text)",
+          textDecoration: "none",
+          opacity: scrolled ? 0 : 1,
+          pointerEvents: scrolled ? "none" : "auto",
+          transition: "opacity 250ms ease",
+        }}
+      >
+        TITAN
+      </a>
+
+      {/* ── Mobile: hamburger — sempre visibile, nessuno sfondo ── */}
       <button
         onClick={() => setOpen(!open)}
-        className="md:hidden fixed flex flex-col justify-center gap-[5px] z-[60]"
+        className="md:hidden fixed z-[60] flex flex-col justify-center gap-[5px]"
         style={{
-          top: "0.75rem",
+          top: "0.875rem",
           right: "1rem",
-          padding: "10px",
-          borderRadius: "10px",
-          backgroundColor: "rgba(10,12,11,0.72)",
-          backdropFilter: "blur(16px)",
-          WebkitBackdropFilter: "blur(16px)",
-          border: "1px solid rgba(255,255,255,0.07)",
-          opacity: hidden ? 1 : 0,
-          pointerEvents: hidden ? "auto" : "none",
-          transition: "opacity 200ms ease",
+          padding: "8px",
+          background: "none",
+          border: "none",
+          cursor: "pointer",
         }}
         aria-label={open ? "Chiudi menu" : "Apri menu"}
         aria-expanded={open}
@@ -150,7 +151,7 @@ export default function Header() {
         <Lines open={open} />
       </button>
 
-      {/* ── Pannello menu mobile ── */}
+      {/* ── Mobile: pannello menu ── */}
       <div
         className="md:hidden fixed left-0 right-0 z-[55] overflow-hidden"
         style={{
@@ -158,7 +159,7 @@ export default function Header() {
           maxHeight: open ? "420px" : "0",
           backgroundColor: "var(--surface)",
           borderBottom: open ? "1px solid var(--hairline)" : "none",
-          paddingTop: "56px",
+          paddingTop: "52px",
           transition: "max-height 300ms cubic-bezier(0.4,0,0.2,1)",
         }}
       >
