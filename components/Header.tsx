@@ -159,8 +159,8 @@ export default function Header() {
           maxHeight: open ? "420px" : "0",
           backgroundColor: "var(--surface)",
           borderBottom: open ? "1px solid var(--hairline)" : "none",
-          paddingTop: "52px",
-          transition: "max-height 300ms cubic-bezier(0.4,0,0.2,1)",
+          paddingTop: open ? "52px" : "0",
+          transition: "max-height 300ms cubic-bezier(0.4,0,0.2,1), padding-top 300ms cubic-bezier(0.4,0,0.2,1)",
         }}
       >
         <nav className="flex flex-col py-4 px-5 gap-1">
