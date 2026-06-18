@@ -7,7 +7,7 @@ export default function Hero() {
       className="relative flex flex-col justify-end overflow-hidden"
       style={{ minHeight: "100svh", backgroundColor: "var(--bg-base)" }}
     >
-      {/* Foto di Alessandro */}
+      {/* Foto di Alessandro — leggermente blurrata per atmosfera */}
       <div className="absolute inset-0" aria-hidden="true">
         <Image
           src="/alex-hero.jpg"
@@ -15,39 +15,33 @@ export default function Hero() {
           fill
           priority
           quality={90}
-          style={{ objectFit: "cover", objectPosition: "55% 25%" }}
+          style={{
+            objectFit: "cover",
+            objectPosition: "55% 25%",
+            filter: "blur(2px)",
+            transform: "scale(1.04)",
+          }}
           sizes="100vw"
         />
       </div>
 
-      {/* Gradiente bottom — solo per leggibilità testo, più leggero */}
+      {/* Gradiente bottom */}
       <div
         className="absolute inset-x-0 bottom-0 pointer-events-none"
         style={{
-          height: "55%",
+          height: "65%",
           background:
-            "linear-gradient(to top, rgba(10,12,11,0.97) 0%, rgba(10,12,11,0.75) 40%, transparent 100%)",
+            "linear-gradient(to top, rgba(10,12,11,0.98) 0%, rgba(10,12,11,0.8) 45%, transparent 100%)",
         }}
         aria-hidden="true"
       />
 
       {/* Contenuto */}
       <div className="relative z-10 max-w-2xl mx-auto w-full px-5 pb-20 pt-28 md:pb-32">
-        {/* Kicker */}
-        <p
-          className="text-xs uppercase tracking-widest mb-4"
-          style={{
-            color: "var(--green-cta)",
-            fontFamily: "var(--font-hanken)",
-            fontWeight: 600,
-          }}
-        >
-          Personal trainer a Olbia — per imprenditori e imprenditrici
-        </p>
 
         {/* Headline H1 */}
         <h1
-          className="font-headline mb-8 leading-[1.05]"
+          className="font-headline mb-5 leading-[1.05]"
           style={{
             fontSize: "clamp(2.25rem, 7.5vw, 4.25rem)",
             color: "var(--text)",
@@ -58,6 +52,19 @@ export default function Hero() {
             Allenalo come gestisci l&apos;azienda.
           </span>
         </h1>
+
+        {/* Kicker — sotto il titolo */}
+        <p
+          className="mb-8 uppercase tracking-widest"
+          style={{
+            fontSize: "0.7rem",
+            color: "var(--text-muted)",
+            fontFamily: "var(--font-hanken)",
+            fontWeight: 600,
+          }}
+        >
+          Personal trainer · Olbia · Solo 1-to-1
+        </p>
 
         {/* CTA */}
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
