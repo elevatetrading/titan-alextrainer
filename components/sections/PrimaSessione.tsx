@@ -182,7 +182,7 @@ export default function PrimaSessione() {
                       style={{
                         backgroundColor: selected
                           ? "var(--green-cta)"
-                          : "rgba(10,12,11,0.5)",
+                          : "var(--surface)",
                         color: selected ? "var(--on-cta)" : "var(--text-muted)",
                         border: `1px solid ${selected ? "var(--green-cta)" : "var(--hairline)"}`,
                         fontFamily: "var(--font-hanken)",
@@ -246,14 +246,14 @@ export default function PrimaSessione() {
           </form>
         )}
 
-        {/* Contatti diretti */}
-        <div className="flex flex-col sm:flex-row gap-3 mt-7">
+        {/* Contatto diretto alternativo */}
+        <div className="mt-5">
           <a
             href="tel:+393445734327"
-            className="flex items-center justify-center gap-2 rounded-md text-sm flex-1 transition-opacity hover:opacity-80"
+            className="flex items-center justify-center gap-2 rounded-md text-sm w-full transition-opacity hover:opacity-80"
             style={{
-              height: "52px",
-              backgroundColor: "rgba(10,12,11,0.4)",
+              height: "56px",
+              backgroundColor: "var(--surface)",
               border: "1px solid var(--hairline)",
               color: "var(--text)",
               fontFamily: "var(--font-hanken)",
@@ -271,37 +271,6 @@ export default function PrimaSessione() {
               />
             </svg>
             Chiama ora
-          </a>
-          <a
-            href="https://wa.me/393445734327"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 rounded-md text-sm flex-1 transition-opacity hover:opacity-80"
-            style={{
-              height: "52px",
-              backgroundColor: "rgba(31,122,82,0.18)",
-              border: "1px solid var(--green-cta)",
-              color: "var(--text)",
-              fontFamily: "var(--font-hanken)",
-              fontWeight: 500,
-              textDecoration: "none",
-            }}
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-              <path
-                d="M8 1C4.134 1 1 4.134 1 8c0 1.155.296 2.242.814 3.186L1 15l3.873-1.014A6.966 6.966 0 0 0 8 15c3.866 0 7-2.686 7-6s-3.134-6-7-6Z"
-                stroke="currentColor"
-                strokeWidth="1.25"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M5.5 7.5c.333-1.333 2.167-1.833 3-1 .5.5.5 1.333-.5 1.833C7 8.833 8 10 9.5 9.333"
-                stroke="currentColor"
-                strokeWidth="1.25"
-                strokeLinecap="round"
-              />
-            </svg>
-            Scrivi su WhatsApp
           </a>
         </div>
       </div>
