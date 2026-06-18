@@ -57,25 +57,18 @@ export default function ChiTiAllena() {
               }}
             >
               <p>
-                Mi chiamo Alessandro Giua, vivo a Olbia e alleno imprenditori e
-                imprenditrici.
+                Alleno imprenditori e imprenditrici a Olbia da anni. Non perché
+                sia una nicchia di marketing — ma perché ho capito che chi
+                guida un&apos;azienda ha bisogno di un approccio completamente
+                diverso.
               </p>
               <p>
-                Dopo anni tra sala pesi, studio sul campo e centinaia di ore al
-                fianco delle persone, ho capito una cosa: chi guida
-                un&apos;azienda ha bisogno di un metodo diverso. Diretto,
-                concreto, senza fronzoli. Niente prediche, niente tempo
-                sprecato.
+                Meno volume, più intensità. Sessioni che entrano nella giornata
+                senza stravolgerla. Un metodo costruito su misura, non copiato
+                da una scheda qualunque.
               </p>
               <p>
-                Lavoro fianco a fianco con founder, dirigenti e liberi
-                professionisti: sessioni rapide ma intense, una routine
-                sostenibile, strumenti per restare lucidi anche nelle giornate
-                più dure.
-              </p>
-              <p>
-                Mi trovi all&apos;Olbia Sporting Club e in sessioni private.
-                Pochi clienti per volta, seguiti davvero.
+                Seguo pochi atleti per volta. Di proposito.
               </p>
             </div>
           </div>

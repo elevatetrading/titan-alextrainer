@@ -8,31 +8,31 @@ const blocchi = [
     numero: "01",
     titolo: "Perché Titan",
     testo:
-      "Il nome viene da lì: solidità. Quando il fisico tiene, la testa è più lucida. Il percorso è costruito su questo equilibrio, non sull'estetica fine a se stessa.",
+      "Il nome non è casuale. Titan è solidità — fisica e mentale. Il percorso che costruiamo insieme non punta all'estetica: punta a farti reggere, qualunque cosa ti aspetti fuori dalla palestra.",
   },
   {
     numero: "02",
     titolo: "Come funziona",
     testo:
-      "Allenamenti brevi, mirati, per chi ha poco tempo ma vuole risultati reali. Ogni percorso parte dal tuo livello e dai tuoi obiettivi. Niente schede infinite, niente diete impossibili: metodo, costanza e una guida che c'è.",
+      "Sessioni brevi, intense, costruite sui tuoi orari. Nessuna scheda generica: ogni settimana si adatta a dove sei e a dove vuoi arrivare. Guida concreta, zero prediche.",
   },
   {
     numero: "03",
-    titolo: "Cosa ottieni",
+    titolo: "Cosa cambia",
     lista: [
-      "Più energia per arrivare a fine giornata",
-      "Meno stress, più lucidità nelle decisioni",
-      "Tono fisico e postura migliori",
-      "Una routine che regge nel tempo",
+      "Energia reale a fine giornata",
+      "Testa più lucida sotto pressione",
+      "Postura e tono che si vedono",
+      "Una routine che non rompi dopo due settimane",
     ],
   },
   {
     numero: "04",
-    titolo: "Per chi è",
+    titolo: "È per te se",
     lista: [
-      "Imprenditori e imprenditrici con l'agenda piena che non vogliono trascurare la salute",
-      "Chi vuole rimettersi in forma senza perdere tempo",
-      "Chi cerca un percorso serio, concreto, su misura",
+      "Hai l'agenda piena e non vuoi che la salute sia l'ultima voce",
+      "Vuoi risultati senza perdere ore in palestra",
+      "Cerchi un metodo serio, non un personal trainer qualunque",
     ],
   },
 ];
@@ -94,27 +94,20 @@ export default function Metodo() {
         </FadeUp>
 
         <FadeUp delay={0.1}>
-        <div className="max-w-2xl mb-12">
-          <h2
-            className="font-archivo leading-tight mb-4"
-            style={{
-              fontSize: "clamp(1.75rem, 5vw, 2.75rem)",
-              color: "var(--text)",
-            }}
-          >
-            Un solo principio: essere solidi.
-          </h2>
-          <p
-            className="text-base leading-relaxed"
-            style={{
-              color: "var(--text-muted)",
-              fontFamily: "var(--font-hanken)",
-            }}
-          >
-            Un corpo forte regge tutto il resto — lavoro, stress, decisioni,
-            famiglia.
-          </p>
-        </div>
+        <p
+          className="text-center mb-12"
+          style={{
+            color: "var(--text-muted)",
+            fontFamily: "var(--font-hanken)",
+            fontSize: "1.0625rem",
+            lineHeight: "1.65",
+            maxWidth: "520px",
+            margin: "0 auto 3rem",
+          }}
+        >
+          Quando il corpo regge, reggono le decisioni, lo stress e le giornate
+          che non finiscono mai.
+        </p>
         </FadeUp>
       </div>
 
