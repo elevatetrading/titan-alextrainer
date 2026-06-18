@@ -45,6 +45,7 @@ export default function Hero() {
           style={{
             fontSize: "clamp(2.25rem, 7.5vw, 4.25rem)",
             color: "var(--text)",
+            textShadow: "0 2px 20px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.4)",
           }}
         >
           Il corpo è il tuo primo asset.{" "}
