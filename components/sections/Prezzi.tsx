@@ -40,16 +40,6 @@ export default function Prezzi() {
         {/* Intro */}
         <FadeUp delay={0}>
         <div className="max-w-xl mb-12">
-          <p
-            className="text-xs uppercase tracking-widest mb-4"
-            style={{
-              color: "var(--green-cta)",
-              fontFamily: "var(--font-hanken)",
-              fontWeight: 600,
-            }}
-          >
-            Scegli il tuo Titan
-          </p>
           <h2
             className="font-archivo leading-tight mb-4"
             style={{
