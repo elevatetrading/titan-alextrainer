@@ -29,7 +29,7 @@ export default function PrimaSessione() {
 
   const inputStyle: React.CSSProperties = {
     height: "52px",
-    backgroundColor: "rgba(10,12,11,0.5)",
+    backgroundColor: "var(--surface)",
     border: "1px solid var(--hairline)",
     color: "var(--text)",
     fontFamily: "var(--font-hanken)",
@@ -55,8 +55,7 @@ export default function PrimaSessione() {
       id="contatti"
       className="section-pad"
       style={{
-        background:
-          "linear-gradient(160deg, var(--green-deep) 0%, var(--green-deep-2) 100%)",
+        backgroundColor: "var(--bg-base)",
       }}
     >
       <div className="max-w-lg mx-auto px-5">
