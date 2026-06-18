@@ -1,3 +1,7 @@
+"use client";
+
+import { useRef, useState, useEffect } from "react";
+
 const blocchi = [
   {
     numero: "01",
@@ -33,15 +37,47 @@ const blocchi = [
 ];
 
 export default function Metodo() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const onScroll = () => {
+      const cards = container.querySelectorAll<HTMLElement>("[data-card]");
+      let closest = 0;
+      let minDist = Infinity;
+      cards.forEach((card, i) => {
+        const dist = Math.abs(card.offsetLeft - container.scrollLeft);
+        if (dist < minDist) {
+          minDist = dist;
+          closest = i;
+        }
+      });
+      setActive(closest);
+    };
+
+    container.addEventListener("scroll", onScroll, { passive: true });
+    return () => container.removeEventListener("scroll", onScroll);
+  }, []);
+
+  function goTo(i: number) {
+    const container = scrollRef.current;
+    if (!container) return;
+    const card = container.querySelectorAll<HTMLElement>("[data-card]")[i];
+    if (card) container.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
+  }
+
   return (
     <section
       id="metodo"
       className="section-pad"
       style={{ backgroundColor: "var(--bg-base)" }}
     >
+      {/* Intro */}
       <div className="max-w-6xl mx-auto px-5">
-        {/* Intro */}
-        <div className="max-w-2xl mb-20 md:mb-28">
+        <div className="max-w-2xl mb-12">
           <p
             className="text-xs uppercase tracking-widest mb-4"
             style={{
@@ -72,89 +108,131 @@ export default function Metodo() {
             famiglia.
           </p>
         </div>
+      </div>
 
-        {/* Blocchi narrativi asimmetrici */}
-        <div className="flex flex-col gap-16 md:gap-24">
-          {blocchi.map((b, i) => (
-            <div
-              key={b.numero}
-              className="flex flex-col md:flex-row md:items-start gap-6 md:gap-20"
+      {/* Carousel */}
+      <div
+        ref={scrollRef}
+        className="hide-scrollbar"
+        style={{
+          display: "flex",
+          overflowX: "auto",
+          scrollSnapType: "x mandatory",
+          WebkitOverflowScrolling: "touch" as React.CSSProperties["WebkitOverflowScrolling"],
+          gap: "1rem",
+          paddingLeft: "1.25rem",
+          paddingRight: "1.25rem",
+        }}
+      >
+        {blocchi.map((b) => (
+          <div
+            key={b.numero}
+            data-card
+            style={{
+              flexShrink: 0,
+              width: "min(calc(100vw - 3rem), 520px)",
+              scrollSnapAlign: "start",
+              scrollSnapStop: "always",
+              backgroundColor: "var(--surface)",
+              border: "1px solid var(--hairline)",
+              borderRadius: "16px",
+              padding: "2rem 1.75rem",
+              display: "flex",
+              flexDirection: "column",
+              gap: "1.25rem",
+            }}
+          >
+            {/* Numero */}
+            <span
+              className="font-headline leading-none"
+              style={{
+                fontSize: "clamp(3rem, 8vw, 5rem)",
+                color: "var(--green-cta)",
+                opacity: 0.2,
+              }}
             >
-              {/* Numero grande — alterna lato su desktop */}
-              <div
-                className={`flex-shrink-0 md:w-28 ${i % 2 === 1 ? "md:order-2 md:text-right" : ""}`}
-              >
-                <span
-                  className="font-headline leading-none"
-                  style={{
-                    fontSize: "clamp(4rem, 10vw, 7rem)",
-                    color: "var(--green-cta)",
-                    opacity: 0.2,
-                    display: "block",
-                  }}
-                >
-                  {b.numero}
-                </span>
-              </div>
+              {b.numero}
+            </span>
 
-              {/* Testo */}
-              <div
-                className={`flex-1 ${i % 2 === 1 ? "md:order-1" : ""}`}
+            {/* Divisore */}
+            <div style={{ height: "1px", backgroundColor: "var(--hairline)" }} />
+
+            {/* Titolo */}
+            <h3
+              className="font-archivo"
+              style={{
+                fontSize: "clamp(1.25rem, 4vw, 1.75rem)",
+                color: "var(--text)",
+              }}
+            >
+              {b.titolo}
+            </h3>
+
+            {/* Testo */}
+            {b.testo && (
+              <p
+                className="text-sm leading-relaxed"
                 style={{
-                  borderTop: "1px solid var(--hairline)",
-                  paddingTop: "1.5rem",
+                  color: "var(--text-muted)",
+                  fontFamily: "var(--font-hanken)",
                 }}
               >
-                <h3
-                  className="font-archivo mb-5"
-                  style={{
-                    fontSize: "clamp(1.375rem, 4vw, 2rem)",
-                    color: "var(--text)",
-                  }}
-                >
-                  {b.titolo}
-                </h3>
+                {b.testo}
+              </p>
+            )}
 
-                {b.testo && (
-                  <p
-                    className="text-base leading-relaxed"
+            {/* Lista */}
+            {b.lista && (
+              <ul className="flex flex-col gap-3">
+                {b.lista.map((item, j) => (
+                  <li
+                    key={j}
+                    className="flex items-start gap-3 text-sm leading-relaxed"
                     style={{
                       color: "var(--text-muted)",
                       fontFamily: "var(--font-hanken)",
                     }}
                   >
-                    {b.testo}
-                  </p>
-                )}
+                    <span
+                      className="mt-[7px] flex-shrink-0 rounded-full"
+                      style={{
+                        width: "5px",
+                        height: "5px",
+                        backgroundColor: "var(--green-cta)",
+                      }}
+                    />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ))}
+      </div>
 
-                {b.lista && (
-                  <ul className="flex flex-col gap-3.5">
-                    {b.lista.map((item, j) => (
-                      <li
-                        key={j}
-                        className="flex items-start gap-3 text-base leading-relaxed"
-                        style={{
-                          color: "var(--text-muted)",
-                          fontFamily: "var(--font-hanken)",
-                        }}
-                      >
-                        <span
-                          className="mt-2 flex-shrink-0 rounded-full"
-                          style={{
-                            width: "6px",
-                            height: "6px",
-                            backgroundColor: "var(--green-cta)",
-                          }}
-                        />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
+      {/* Dot indicator */}
+      <div
+        className="flex items-center justify-center gap-2 mt-8"
+        aria-label="Navigazione sezioni"
+      >
+        {blocchi.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            aria-label={`Vai a ${blocchi[i].titolo}`}
+            style={{
+              width: active === i ? "28px" : "8px",
+              height: "8px",
+              borderRadius: "4px",
+              backgroundColor:
+                active === i ? "var(--green-cta)" : "var(--hairline)",
+              border: "none",
+              padding: 0,
+              cursor: "pointer",
+              transition: "width 300ms ease, background-color 300ms ease",
+            }}
+          />
+        ))}
       </div>
     </section>
   );
