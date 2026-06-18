@@ -41,7 +41,7 @@ export default function Hero() {
 
         {/* Headline H1 */}
         <h1
-          className="font-headline mb-5 leading-[1.05]"
+          className="font-headline mb-8 leading-[1.05]"
           style={{
             fontSize: "clamp(2.25rem, 7.5vw, 4.25rem)",
             color: "var(--text)",
@@ -53,19 +53,6 @@ export default function Hero() {
             Allenalo come gestisci l&apos;azienda.
           </span>
         </h1>
-
-        {/* Kicker — sotto il titolo */}
-        <p
-          className="mb-8 uppercase tracking-widest"
-          style={{
-            fontSize: "0.7rem",
-            color: "var(--text-muted)",
-            fontFamily: "var(--font-hanken)",
-            fontWeight: 600,
-          }}
-        >
-          Personal trainer · Olbia · Solo 1-to-1
-        </p>
 
         {/* CTA */}
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
