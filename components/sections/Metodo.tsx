@@ -132,7 +132,7 @@ export default function Metodo() {
           paddingRight: "1.25rem",
         }}
       >
-        {blocchi.map((b) => (
+        {blocchi.map((b, i) => (
           <div
             key={b.numero}
             data-card
@@ -148,6 +148,7 @@ export default function Metodo() {
               display: "flex",
               flexDirection: "column",
               gap: "1.25rem",
+              minHeight: "260px",
             }}
           >
             {/* Numero */}
@@ -213,6 +214,41 @@ export default function Metodo() {
                   </li>
                 ))}
               </ul>
+            )}
+
+            {/* Indicatore scorri — solo slide 1-3 */}
+            {i < blocchi.length - 1 && (
+              <div
+                style={{
+                  marginTop: "auto",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  opacity: 0.45,
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "0.65rem",
+                    fontFamily: "var(--font-hanken)",
+                    fontWeight: 600,
+                    letterSpacing: "0.09em",
+                    textTransform: "uppercase",
+                    color: "var(--text-muted)",
+                  }}
+                >
+                  Scorri
+                </span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                  <path
+                    d="M2 7h10M8 3l4 4-4 4"
+                    stroke="var(--text-muted)"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
             )}
           </div>
         ))}
