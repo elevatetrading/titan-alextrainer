@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import CtaBar from "@/components/CtaBar";
 import CookieBanner from "@/components/CookieBanner";
 import Hero from "@/components/sections/Hero";
 import ProveRapide from "@/components/sections/ProveRapide";
@@ -24,7 +23,6 @@ export default function Home() {
         <PrimaSessione />
       </main>
       <Footer />
-      <CtaBar />
       <CookieBanner />
     </>
   );
