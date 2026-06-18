@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function ChiTiAllena() {
   return (
     <section
@@ -7,33 +9,19 @@ export default function ChiTiAllena() {
     >
       <div className="max-w-6xl mx-auto px-5">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
-          {/* Foto ritratto placeholder */}
+          {/* Foto ritratto Alessandro */}
           <div
             className="relative w-full rounded-2xl overflow-hidden"
-            style={{
-              aspectRatio: "3 / 4",
-              background:
-                "linear-gradient(145deg, var(--green-deep) 0%, var(--bg-base) 100%)",
-              maxHeight: "520px",
-            }}
+            style={{ aspectRatio: "3 / 4", maxHeight: "520px" }}
           >
-            <div
-              className="absolute inset-0 flex flex-col items-center justify-center gap-1 opacity-[0.15] pointer-events-none select-none"
-              aria-hidden="true"
-            >
-              <p
-                className="text-xs uppercase tracking-widest"
-                style={{ color: "var(--text-muted)", fontFamily: "var(--font-hanken)" }}
-              >
-                FOTO RITRATTO
-              </p>
-              <p
-                className="text-xs"
-                style={{ color: "var(--text-muted)", fontFamily: "var(--font-hanken)" }}
-              >
-                Alessandro Giua
-              </p>
-            </div>
+            <Image
+              src="/alex-ritratto.jpg"
+              alt="Alessandro Giua — personal trainer a Olbia"
+              fill
+              quality={90}
+              style={{ objectFit: "cover", objectPosition: "center top" }}
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </div>
 
           {/* Bio */}
