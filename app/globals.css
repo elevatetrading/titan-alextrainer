@@ -116,13 +116,9 @@ body {
 }
 
 /* Spazio inferiore per la barra CTA fissa su mobile */
-.main-content {
-  padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
-}
-
-@media (min-width: 768px) {
-  .main-content {
-    padding-bottom: 0;
+@media (max-width: 767px) {
+  body {
+    padding-bottom: calc(56px + env(safe-area-inset-bottom, 0px));
   }
 }
 

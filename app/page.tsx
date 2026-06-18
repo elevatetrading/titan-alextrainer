@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="main-content">
+      <main>
         <Hero />
         <ProveRapide />
         <Metodo />
