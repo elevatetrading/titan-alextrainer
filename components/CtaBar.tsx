@@ -6,16 +6,38 @@ export default function CtaBar() {
   const [visible, setVisible] = useState(false);
   const [compact, setCompact] = useState(false);
   const lastScrollY = useRef(0);
+  const heroGone = useRef(false);
+  const footerVisible = useRef(false);
 
   useEffect(() => {
     const hero = document.getElementById("hero");
+    const footer = document.getElementById("site-footer");
     if (!hero) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => setVisible(!entry.isIntersecting),
+    function sync() {
+      setVisible(heroGone.current && !footerVisible.current);
+    }
+
+    const heroObserver = new IntersectionObserver(
+      ([entry]) => {
+        heroGone.current = !entry.isIntersecting;
+        sync();
+      },
       { threshold: 0 }
     );
-    observer.observe(hero);
+    heroObserver.observe(hero);
+
+    let footerObserver: IntersectionObserver | null = null;
+    if (footer) {
+      footerObserver = new IntersectionObserver(
+        ([entry]) => {
+          footerVisible.current = entry.isIntersecting;
+          sync();
+        },
+        { threshold: 0 }
+      );
+      footerObserver.observe(footer);
+    }
 
     const handleScroll = () => {
       const currentY = window.scrollY;
@@ -26,13 +48,13 @@ export default function CtaBar() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
-      observer.disconnect();
+      heroObserver.disconnect();
+      footerObserver?.disconnect();
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    /* Wrapper: gestisce lo slide-up dal basso con spring */
     <div
       className="md:hidden fixed left-0 right-0"
       style={{
@@ -41,7 +63,6 @@ export default function CtaBar() {
         display: "flex",
         justifyContent: "center",
         padding: "0 1rem",
-        /* slide-up con overshoot leggero: parte da sotto lo schermo */
         transform: visible ? "translateY(0)" : "translateY(calc(100% + 4rem))",
         transition: visible
           ? "transform 520ms cubic-bezier(0.34, 1.4, 0.64, 1)"

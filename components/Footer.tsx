@@ -14,6 +14,7 @@ const legalLinks = [
 export default function Footer() {
   return (
     <footer
+      id="site-footer"
       style={{
         backgroundColor: "var(--surface)",
         borderTop: "1px solid var(--hairline)",
