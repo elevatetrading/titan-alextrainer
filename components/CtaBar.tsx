@@ -23,10 +23,10 @@ export default function CtaBar() {
 
       setVisible(afterHero && beforeFooter);
 
-      // Compact: scrollando giù
+      // Compact: scrollando su
       const currentY = window.scrollY;
-      if (currentY > lastScrollY.current + 8) setCompact(true);
-      else if (currentY < lastScrollY.current - 8) setCompact(false);
+      if (currentY < lastScrollY.current - 8) setCompact(true);
+      else if (currentY > lastScrollY.current + 8) setCompact(false);
       lastScrollY.current = currentY;
     };
 

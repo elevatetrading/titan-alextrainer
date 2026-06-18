@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import FadeUp from "@/components/ui/FadeUp";
 
 const opzioni = ["Titan8", "Titan12", "Non so ancora"];
 
@@ -59,6 +60,7 @@ export default function PrimaSessione() {
       }}
     >
       <div className="max-w-lg mx-auto px-5">
+        <FadeUp delay={0}>
         <p
           className="text-xs uppercase tracking-widest mb-4"
           style={{
@@ -88,7 +90,9 @@ export default function PrimaSessione() {
           Una sessione introduttiva, senza impegno. Vediamo da dove parti, cosa
           ti serve e se il metodo fa per te. Poi decidi tu.
         </p>
+        </FadeUp>
 
+        <FadeUp delay={0.12}>
         {sent ? (
           <div
             className="rounded-xl p-7 text-center"
@@ -273,6 +277,7 @@ export default function PrimaSessione() {
             Chiama ora
           </a>
         </div>
+        </FadeUp>
       </div>
     </section>
   );

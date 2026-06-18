@@ -1,4 +1,5 @@
 import Image from "next/image";
+import FadeUp from "@/components/ui/FadeUp";
 
 export default function ChiTiAllena() {
   return (
@@ -10,6 +11,7 @@ export default function ChiTiAllena() {
       <div className="max-w-6xl mx-auto px-5">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
           {/* Foto ritratto Alessandro */}
+          <FadeUp delay={0}>
           <div
             className="relative w-full rounded-2xl overflow-hidden"
             style={{ aspectRatio: "3 / 4", maxHeight: "520px" }}
@@ -23,8 +25,10 @@ export default function ChiTiAllena() {
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
+          </FadeUp>
 
           {/* Bio */}
+          <FadeUp delay={0.12}>
           <div>
             <p
               className="text-xs uppercase tracking-widest mb-4"
@@ -75,6 +79,7 @@ export default function ChiTiAllena() {
               </p>
             </div>
           </div>
+          </FadeUp>
         </div>
       </div>
     </section>

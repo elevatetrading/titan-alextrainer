@@ -1,3 +1,5 @@
+import FadeUp from "@/components/ui/FadeUp";
+
 const recensioni = [
   {
     testo:
@@ -28,6 +30,7 @@ export default function LeVoci() {
       style={{ backgroundColor: "var(--bg-base)" }}
       className="section-pad overflow-hidden"
     >
+      <FadeUp delay={0}>
       <div className="max-w-6xl mx-auto px-5 mb-10">
         <p
           className="text-xs uppercase tracking-widest mb-3"
@@ -49,8 +52,10 @@ export default function LeVoci() {
           Cosa dicono i clienti
         </h2>
       </div>
+      </FadeUp>
 
       {/* Carosello swipe — CSS scroll snap puro */}
+      <FadeUp delay={0.1}>
       <div
         className="flex gap-5 overflow-x-auto px-5 pb-4 hide-scrollbar"
         style={{ scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}
@@ -112,6 +117,7 @@ export default function LeVoci() {
         {/* Spacer per evitare che l'ultima card tocchi il bordo */}
         <div className="flex-shrink-0 w-1" aria-hidden="true" />
       </div>
+      </FadeUp>
 
       {/* Nota provvisorio */}
       <div className="max-w-6xl mx-auto px-5 mt-4">

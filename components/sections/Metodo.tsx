@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
+import FadeUp from "@/components/ui/FadeUp";
 
 const blocchi = [
   {
@@ -78,6 +79,7 @@ export default function Metodo() {
       {/* Intro */}
       <div className="max-w-6xl mx-auto px-5">
         {/* Brand name — grande e centrato */}
+        <FadeUp delay={0}>
         <p
           className="font-headline text-center mb-10"
           style={{
@@ -89,7 +91,9 @@ export default function Metodo() {
           Il Metodo{" "}
           <span style={{ color: "var(--green-cta)" }}>Titan</span>
         </p>
+        </FadeUp>
 
+        <FadeUp delay={0.1}>
         <div className="max-w-2xl mb-12">
           <h2
             className="font-archivo leading-tight mb-4"
@@ -111,6 +115,7 @@ export default function Metodo() {
             famiglia.
           </p>
         </div>
+        </FadeUp>
       </div>
 
       {/* Carousel */}

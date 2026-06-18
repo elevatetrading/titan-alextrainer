@@ -1,3 +1,5 @@
+import FadeUp from "@/components/ui/FadeUp";
+
 const inclusi = [
   "Abbonamento Olbia Sporting Club",
   "Assistenza WhatsApp 24/7",
@@ -36,6 +38,7 @@ export default function Prezzi() {
     >
       <div className="max-w-6xl mx-auto px-5">
         {/* Intro */}
+        <FadeUp delay={0}>
         <div className="max-w-xl mb-12">
           <p
             className="text-xs uppercase tracking-widest mb-4"
@@ -67,12 +70,13 @@ export default function Prezzi() {
             l&apos;abbonamento all&apos;Olbia Sporting Club.
           </p>
         </div>
+        </FadeUp>
 
         {/* Card prezzi */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl">
-          {pacchetti.map((p) => (
+          {pacchetti.map((p, i) => (
+            <FadeUp key={p.id} delay={0.1 + i * 0.1}>
             <div
-              key={p.id}
               className={`relative flex flex-col rounded-[20px] p-7 ${p.highlighted ? "card-featured" : ""}`}
               style={{
                 backgroundColor: p.highlighted
@@ -187,6 +191,7 @@ export default function Prezzi() {
                 {p.cta}
               </a>
             </div>
+            </FadeUp>
           ))}
         </div>
       </div>

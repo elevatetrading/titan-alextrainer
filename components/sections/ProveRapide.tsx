@@ -1,3 +1,5 @@
+import FadeUp from "@/components/ui/FadeUp";
+
 const prove = [
   {
     num: "01",
@@ -22,7 +24,7 @@ const prove = [
 export default function ProveRapide() {
   return (
     <section>
-      {prove.map((p) => (
+      {prove.map((p, i) => (
         <div
           key={p.num}
           style={{ backgroundColor: p.bg }}
@@ -31,6 +33,7 @@ export default function ProveRapide() {
             className="max-w-6xl mx-auto px-5"
             style={{ paddingTop: "20px", paddingBottom: "20px" }}
           >
+            <FadeUp delay={i * 0.08}>
             <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:gap-10">
               <span
                 className="font-headline leading-none flex-shrink-0"
@@ -60,6 +63,7 @@ export default function ProveRapide() {
                 </p>
               </div>
             </div>
+            </FadeUp>
           </div>
         </div>
       ))}
