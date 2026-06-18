@@ -25,7 +25,7 @@ const recensioni = [
 export default function LeVoci() {
   return (
     <section
-      style={{ backgroundColor: "var(--green-deep)" }}
+      style={{ backgroundColor: "var(--bg-base)" }}
       className="section-pad overflow-hidden"
     >
       <div className="max-w-6xl mx-auto px-5 mb-10">

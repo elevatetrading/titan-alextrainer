@@ -56,7 +56,29 @@ export default function Hero() {
 
         {/* CTA */}
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-          <a href="#contatti" className="btn-cta w-full sm:w-auto">
+          <a
+            href="#contatti"
+            className="w-full sm:w-auto flex items-center justify-center"
+            style={{
+              height: "56px",
+              borderRadius: "6px",
+              padding: "0 2rem",
+              fontFamily: "var(--font-archivo)",
+              fontWeight: 700,
+              fontSize: "0.875rem",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              textDecoration: "none",
+              color: "rgba(255,255,255,0.92)",
+              backgroundColor: "rgba(31,122,82,0.45)",
+              border: "1px solid rgba(31,122,82,0.7)",
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.12), 0 4px 20px rgba(0,0,0,0.3)",
+              whiteSpace: "nowrap",
+              transition: "background-color 200ms ease",
+            }}
+          >
             Prenota la sessione gratuita
           </a>
           <a
