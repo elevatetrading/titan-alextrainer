@@ -6,52 +6,33 @@ export default function CtaBar() {
   const [visible, setVisible] = useState(false);
   const [compact, setCompact] = useState(false);
   const lastScrollY = useRef(0);
-  const heroGone = useRef(false);
-  const footerVisible = useRef(false);
 
   useEffect(() => {
-    const hero = document.getElementById("hero");
-    const footer = document.getElementById("site-footer");
-    if (!hero) return;
+    const update = () => {
+      const hero = document.getElementById("hero");
+      const footer = document.getElementById("site-footer");
+      if (!hero || !footer) return;
 
-    function sync() {
-      setVisible(heroGone.current && !footerVisible.current);
-    }
+      const vh = window.innerHeight;
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      const footerTop = footer.getBoundingClientRect().top;
 
-    const heroObserver = new IntersectionObserver(
-      ([entry]) => {
-        heroGone.current = !entry.isIntersecting;
-        sync();
-      },
-      { threshold: 0 }
-    );
-    heroObserver.observe(hero);
+      // Visibile solo dopo la hero E quando il footer è ancora lontano 160px
+      const afterHero = heroBottom < 0;
+      const beforeFooter = footerTop > vh + 160;
 
-    let footerObserver: IntersectionObserver | null = null;
-    if (footer) {
-      footerObserver = new IntersectionObserver(
-        ([entry]) => {
-          footerVisible.current = entry.isIntersecting;
-          sync();
-        },
-        { threshold: 0, rootMargin: "0px 0px 120px 0px" }
-      );
-      footerObserver.observe(footer);
-    }
+      setVisible(afterHero && beforeFooter);
 
-    const handleScroll = () => {
+      // Compact: scrollando giù
       const currentY = window.scrollY;
       if (currentY > lastScrollY.current + 8) setCompact(true);
       else if (currentY < lastScrollY.current - 8) setCompact(false);
       lastScrollY.current = currentY;
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => {
-      heroObserver.disconnect();
-      footerObserver?.disconnect();
-      window.removeEventListener("scroll", handleScroll);
-    };
+    window.addEventListener("scroll", update, { passive: true });
+    update(); // check iniziale
+    return () => window.removeEventListener("scroll", update);
   }, []);
 
   return (
@@ -90,8 +71,7 @@ export default function CtaBar() {
           whiteSpace: "nowrap",
           overflow: "hidden",
           boxShadow: "0 6px 28px rgba(0,0,0,0.45)",
-          transition:
-            "width 350ms cubic-bezier(0.4, 0, 0.2, 1), font-size 200ms ease",
+          transition: "width 350ms cubic-bezier(0.4, 0, 0.2, 1), font-size 200ms ease",
         }}
       >
         {compact ? "PRENOTA" : "Richiedi la tua lezione"}
