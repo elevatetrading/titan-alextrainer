@@ -20,7 +20,7 @@ export default function CtaBar() {
 
     // Hero — scroll event (più affidabile dell'observer al top su iOS rubber-band)
     function onScroll() {
-      state.current.pastHero = hero.getBoundingClientRect().bottom < 0;
+      state.current.pastHero = hero!.getBoundingClientRect().bottom < 0;
       sync();
 
       // Compact: si rimpicciolisce scrollando verso su
