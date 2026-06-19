@@ -73,7 +73,7 @@ export default function CtaBar() {
         borderRadius: "8px",
         fontSize: "0.75rem",
         overflow: "hidden",
-        width: compact ? "130px" : "min(calc(100vw - 3rem), 310px)",
+        width: compact ? "145px" : "min(calc(100vw - 3rem), 310px)",
         transform: visible
           ? "translateX(-50%) translateY(0)"
           : "translateX(-50%) translateY(calc(100% + 2.5rem + env(safe-area-inset-bottom, 0px)))",
@@ -114,7 +114,7 @@ export default function CtaBar() {
           pointerEvents: "none",
         }}
       >
-        PRENOTA
+        INIZIA ORA
       </span>
     </a>
   );
