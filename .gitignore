@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.gstack/
+
+# Screenshot artifacts (review sessions)
+*.png
+*.jpeg
+*.jpg
+.playwright-mcp/
+.dr-screenshots/
