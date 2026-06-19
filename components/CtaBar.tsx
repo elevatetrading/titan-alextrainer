@@ -52,10 +52,10 @@ export default function CtaBar() {
       className="md:hidden fixed left-0 right-0 bottom-0"
       style={{
         zIndex: 50,
-        backgroundColor: "var(--bg-base)",
-        borderTop: "1px solid var(--hairline)",
+        display: "flex",
+        justifyContent: "center",
         padding: "0.75rem 1rem",
-        paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom, 0px))",
+        paddingBottom: "calc(0.5rem + env(safe-area-inset-bottom, 0px))",
         transform: visible ? "translateY(0)" : "translateY(110%)",
         transition: visible
           ? "transform 480ms cubic-bezier(0.34, 1.4, 0.64, 1)"
@@ -66,7 +66,7 @@ export default function CtaBar() {
       <a
         href="#contatti"
         style={{
-          display: "flex",
+          display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
           backgroundColor: "var(--green-cta)",
@@ -76,13 +76,14 @@ export default function CtaBar() {
           fontWeight: 700,
           letterSpacing: "0.06em",
           textTransform: "uppercase",
-          width: compact ? "140px" : "100%",
+          padding: "0 0.875rem",
           height: "52px",
           borderRadius: "8px",
           fontSize: compact ? "0.75rem" : "0.875rem",
           whiteSpace: "nowrap",
           overflow: "hidden",
-          transition: "width 350ms cubic-bezier(0.4, 0, 0.2, 1), font-size 200ms ease",
+          boxShadow: "0 4px 24px rgba(0,0,0,0.45)",
+          transition: "font-size 200ms ease",
         }}
       >
         {compact ? "PRENOTA" : "Richiedi la tua lezione gratuita"}
