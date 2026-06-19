@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 
 const navLinks = [
   { href: "#metodo", label: "Metodo" },
@@ -78,7 +77,8 @@ export default function Header() {
       >
         <div className="max-w-6xl mx-auto px-5 flex items-center justify-between h-14">
           <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-            <Image src="/logo-ag.png" alt="Titan — Alessandro Giua" width={44} height={44} style={{ filter: "brightness(0) invert(1)" }} priority />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo-ag.svg" alt="Titan — Alessandro Giua" height={36} style={{ filter: "brightness(0) invert(1)", display: "block" }} />
           </a>
           <nav className="flex items-center gap-8">
             {navLinks.map((link) => (
@@ -126,7 +126,8 @@ export default function Header() {
           transition: "opacity 250ms ease",
         }}
       >
-        <Image src="/logo-ag.png" alt="Titan — Alessandro Giua" width={40} height={40} style={{ filter: "brightness(0) invert(1)" }} priority />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src="/logo-ag.svg" alt="Titan — Alessandro Giua" height={32} style={{ filter: "brightness(0) invert(1)", display: "block" }} />
       </a>
 
       {/* ── Mobile: hamburger — sempre visibile, nessuno sfondo ── */}
