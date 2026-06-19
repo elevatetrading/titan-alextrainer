@@ -130,21 +130,6 @@ body {
 
 
 
-/* Metodo: carousel su mobile, blocchi verticali su desktop */
-@media (min-width: 768px) {
-  .metodo-carousel {
-    flex-direction: column !important;
-    overflow-x: visible !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-  .metodo-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    scroll-snap-align: none !important;
-  }
-}
-
 /* Card prezzo in rilievo — solo da desktop */
 .card-featured {
   transform: none;

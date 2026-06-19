@@ -40,8 +40,18 @@ const blocchi = [
 export default function Metodo() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    setIsDesktop(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setIsDesktop(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  useEffect(() => {
+    if (isDesktop) return;
     const container = scrollRef.current;
     if (!container) return;
 
@@ -61,7 +71,7 @@ export default function Metodo() {
 
     container.addEventListener("scroll", onScroll, { passive: true });
     return () => container.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isDesktop]);
 
   function goTo(i: number) {
     const container = scrollRef.current;
@@ -114,27 +124,30 @@ export default function Metodo() {
       {/* Carousel su mobile, blocchi verticali su desktop */}
       <div
         ref={scrollRef}
-        className="hide-scrollbar metodo-carousel"
+        className="hide-scrollbar"
         style={{
           display: "flex",
-          overflowX: "auto",
-          scrollSnapType: "x mandatory",
+          flexDirection: isDesktop ? "column" : "row",
+          overflowX: isDesktop ? "visible" : "auto",
+          scrollSnapType: isDesktop ? "none" : "x mandatory",
           WebkitOverflowScrolling: "touch" as React.CSSProperties["WebkitOverflowScrolling"],
           gap: "1rem",
-          paddingLeft: "1.25rem",
-          paddingRight: "1.25rem",
+          paddingLeft: isDesktop ? 0 : "1.25rem",
+          paddingRight: isDesktop ? 0 : "1.25rem",
+          maxWidth: isDesktop ? "72rem" : "none",
+          margin: isDesktop ? "0 auto" : undefined,
+          paddingTop: isDesktop ? "0.5rem" : undefined,
         }}
       >
         {blocchi.map((b, i) => (
           <div
             key={b.numero}
             data-card
-            className="metodo-card"
             style={{
-              flexShrink: 0,
-              width: "min(calc(100vw - 3rem), 520px)",
-              scrollSnapAlign: "start",
-              scrollSnapStop: "always",
+              flexShrink: isDesktop ? 1 : 0,
+              width: isDesktop ? "100%" : "min(calc(100vw - 3rem), 520px)",
+              scrollSnapAlign: isDesktop ? "none" : "start",
+              scrollSnapStop: isDesktop ? undefined : "always",
               backgroundColor: "var(--surface)",
               border: "1px solid var(--hairline)",
               borderRadius: "16px",
@@ -210,8 +223,8 @@ export default function Metodo() {
               </ul>
             )}
 
-            {/* Indicatore scorri — solo slide 1-3 */}
-            {i < blocchi.length - 1 && (
+            {/* Indicatore scorri — solo slide 1-3, solo mobile */}
+            {i < blocchi.length - 1 && !isDesktop && (
               <div
                 style={{
                   marginTop: "auto",
@@ -248,8 +261,8 @@ export default function Metodo() {
         ))}
       </div>
 
-      {/* Dot indicator */}
-      <div
+      {/* Dot indicator — solo mobile */}
+      {!isDesktop && <div
         className="flex items-center justify-center gap-2 mt-8"
         aria-label="Navigazione sezioni"
       >
@@ -283,7 +296,7 @@ export default function Metodo() {
             />
           </button>
         ))}
-      </div>
+      </div>}
     </section>
   );
 }
