@@ -148,6 +148,23 @@ body {
   }
 }
 
+/* Hero — entrance animation */
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-arrow-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+
 /* Animated gradient border — keyframes + animation classes */
 @keyframes gradient-rotate {
   from { --gradient-angle: 0deg; }

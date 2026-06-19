@@ -1,5 +1,12 @@
 import Image from "next/image";
 
+const EASE = "cubic-bezier(0.16, 1, 0.3, 1)";
+const DUR = "0.75s";
+
+function fadeUp(delayS: number) {
+  return `hero-fade-up ${DUR} ${EASE} ${delayS}s both`;
+}
+
 export default function Hero() {
   return (
     <section
@@ -29,9 +36,9 @@ export default function Hero() {
       <div
         className="absolute inset-x-0 bottom-0 pointer-events-none"
         style={{
-          height: "65%",
+          height: "70%",
           background:
-            "linear-gradient(to top, rgba(10,12,11,0.98) 0%, rgba(10,12,11,0.8) 45%, transparent 100%)",
+            "linear-gradient(to top, rgba(10,12,11,1) 0%, rgba(10,12,11,0.85) 40%, rgba(10,12,11,0.3) 75%, transparent 100%)",
         }}
         aria-hidden="true"
       />
@@ -39,7 +46,7 @@ export default function Hero() {
       {/* Contenuto */}
       <div className="relative z-10 max-w-2xl mx-auto w-full px-5 pb-20 pt-28 md:pb-32">
 
-        {/* Headline H1 */}
+        {/* Headline H1 — due righe animate in sequenza */}
         <h1
           className="font-headline mb-8 leading-[1.05]"
           style={{
@@ -48,8 +55,21 @@ export default function Hero() {
             textShadow: "0 2px 20px rgba(0,0,0,0.6), 0 1px 4px rgba(0,0,0,0.4)",
           }}
         >
-          Testa libera. Corpo forte.{" "}
-          <span style={{ color: "var(--green-cta)" }}>
+          <span
+            style={{
+              display: "block",
+              animation: fadeUp(0.15),
+            }}
+          >
+            Testa libera. Corpo forte.
+          </span>
+          <span
+            style={{
+              display: "block",
+              color: "var(--green-cta)",
+              animation: fadeUp(0.32),
+            }}
+          >
             Allenati come gestisci l&apos;azienda.
           </span>
         </h1>
@@ -60,6 +80,7 @@ export default function Hero() {
             href="#contatti"
             className="w-full sm:w-auto flex items-center justify-center"
             style={{
+              animation: fadeUp(0.5),
               height: "56px",
               borderRadius: "6px",
               padding: "0 2rem",
@@ -85,6 +106,7 @@ export default function Hero() {
             href="#metodo"
             className="flex items-center justify-center gap-2 py-2 text-sm"
             style={{
+              animation: fadeUp(0.65),
               color: "var(--text-muted)",
               fontFamily: "var(--font-hanken)",
               fontWeight: 500,
@@ -98,6 +120,9 @@ export default function Hero() {
               viewBox="0 0 16 16"
               fill="none"
               aria-hidden="true"
+              style={{
+                animation: "hero-arrow-bounce 1.8s ease-in-out 1.8s infinite",
+              }}
             >
               <path
                 d="M8 3v10M4 9l4 4 4-4"
