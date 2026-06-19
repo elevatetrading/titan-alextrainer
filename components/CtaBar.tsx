@@ -54,8 +54,11 @@ export default function CtaBar() {
         zIndex: 50,
         display: "flex",
         justifyContent: "center",
-        padding: "0.75rem 1rem",
-        paddingBottom: "calc(0.5rem + env(safe-area-inset-bottom, 0px))",
+        backgroundColor: "var(--bg-base)",
+        paddingTop: "0.75rem",
+        paddingLeft: "1rem",
+        paddingRight: "1rem",
+        paddingBottom: "env(safe-area-inset-bottom, 0px)",
         transform: visible ? "translateY(0)" : "translateY(110%)",
         transition: visible
           ? "transform 480ms cubic-bezier(0.34, 1.4, 0.64, 1)"
@@ -82,7 +85,6 @@ export default function CtaBar() {
           fontSize: "0.75rem",
           whiteSpace: "nowrap",
           overflow: "hidden",
-          boxShadow: "0 4px 24px rgba(0,0,0,0.45)",
         }}
       >
         {compact ? "PRENOTA" : "Richiedi la tua lezione gratuita"}
