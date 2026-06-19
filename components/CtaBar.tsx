@@ -21,16 +21,11 @@ export default function CtaBar() {
 
     function update() {
       const pastHero = hero!.getBoundingClientRect().bottom < 0;
-
-      // Nasconde appena si avvicina al form — buffer 120px per iOS Safari
       const vh = document.documentElement.clientHeight;
       const atContact = window.scrollY >= contattiY.current - vh - 120;
-
-      // Non appare mai mentre il cookie banner è visibile (evita conflitti visivi su iOS)
       const cookieBanner = document.querySelector(
         '[role="dialog"][aria-label="Cookie policy"]'
       );
-
       setVisible(pastHero && !atContact && !cookieBanner);
     }
 
@@ -54,17 +49,17 @@ export default function CtaBar() {
 
   return (
     <div
-      className="md:hidden fixed left-0 right-0"
+      className="md:hidden fixed left-0 right-0 bottom-0"
       style={{
-        bottom: "calc(1rem + env(safe-area-inset-bottom, 0px))",
         zIndex: 50,
-        display: "flex",
-        justifyContent: "center",
-        padding: "0 1rem",
-        transform: visible ? "translateY(0)" : "translateY(calc(100% + 4rem))",
+        backgroundColor: "var(--bg-base)",
+        borderTop: "1px solid var(--hairline)",
+        padding: "0.75rem 1rem",
+        paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom, 0px))",
+        transform: visible ? "translateY(0)" : "translateY(110%)",
         transition: visible
-          ? "transform 520ms cubic-bezier(0.34, 1.4, 0.64, 1)"
-          : "transform 300ms ease-in",
+          ? "transform 480ms cubic-bezier(0.34, 1.4, 0.64, 1)"
+          : "transform 280ms ease-in",
         pointerEvents: visible ? "auto" : "none",
       }}
     >
@@ -81,15 +76,13 @@ export default function CtaBar() {
           fontWeight: 700,
           letterSpacing: "0.06em",
           textTransform: "uppercase",
-          width: compact ? "130px" : "100%",
-          height: "56px",
-          borderRadius: "10px",
+          width: compact ? "140px" : "100%",
+          height: "52px",
+          borderRadius: "8px",
           fontSize: compact ? "0.75rem" : "0.875rem",
           whiteSpace: "nowrap",
           overflow: "hidden",
-          boxShadow: "0 6px 28px rgba(0,0,0,0.45)",
-          transition:
-            "width 350ms cubic-bezier(0.4, 0, 0.2, 1), font-size 200ms ease",
+          transition: "width 350ms cubic-bezier(0.4, 0, 0.2, 1), font-size 200ms ease",
         }}
       >
         {compact ? "PRENOTA" : "Richiedi la tua lezione gratuita"}
