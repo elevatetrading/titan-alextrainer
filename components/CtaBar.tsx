@@ -69,22 +69,53 @@ export default function CtaBar() {
         fontWeight: 700,
         letterSpacing: "0.06em",
         textTransform: "uppercase",
-        padding: "0 1rem",
         height: "52px",
         borderRadius: "8px",
         fontSize: "0.75rem",
-        whiteSpace: "nowrap",
         overflow: "hidden",
+        width: compact ? "130px" : "min(calc(100vw - 3rem), 310px)",
         transform: visible
           ? "translateX(-50%) translateY(0)"
           : "translateX(-50%) translateY(calc(100% + 2.5rem + env(safe-area-inset-bottom, 0px)))",
         transition: visible
-          ? "transform 480ms cubic-bezier(0.34, 1.4, 0.64, 1)"
-          : "transform 280ms ease-in",
+          ? "transform 480ms cubic-bezier(0.34, 1.4, 0.64, 1), width 380ms cubic-bezier(0.4, 0, 0.2, 1)"
+          : "transform 280ms ease-in, width 380ms cubic-bezier(0.4, 0, 0.2, 1)",
         pointerEvents: visible ? "auto" : "none",
+        position: "fixed",
       }}
     >
-      {compact ? "PRENOTA" : "Richiedi la tua lezione gratuita"}
+      <span
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          whiteSpace: "nowrap",
+          letterSpacing: "0.06em",
+          opacity: compact ? 0 : 1,
+          transition: "opacity 220ms ease",
+          pointerEvents: "none",
+        }}
+      >
+        Richiedi la tua lezione gratuita
+      </span>
+      <span
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          whiteSpace: "nowrap",
+          letterSpacing: "0.1em",
+          opacity: compact ? 1 : 0,
+          transition: "opacity 220ms ease",
+          pointerEvents: "none",
+        }}
+      >
+        PRENOTA
+      </span>
     </a>
   );
 }
