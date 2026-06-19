@@ -1,4 +1,11 @@
 import FadeUp from "@/components/ui/FadeUp";
+import { BorderRotate } from "@/components/ui/animated-gradient-border";
+
+const bronzoPalette = {
+  primary: '#261808',
+  secondary: '#C8913A',
+  accent: '#F0C860',
+};
 
 const inclusi = [
   "Abbonamento Olbia Sporting Club",
@@ -67,20 +74,22 @@ export default function Prezzi() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl">
           {pacchetti.map((p, i) => (
             <FadeUp key={p.id} delay={0.1 + i * 0.1}>
-            <div
-              className={`relative flex flex-col rounded-[20px] p-7 ${p.highlighted ? "card-featured" : ""}`}
+            <BorderRotate
+              borderWidth={1}
+              borderRadius={20}
+              backgroundColor={p.highlighted ? "var(--surface-2)" : "var(--surface)"}
+              animationMode={p.highlighted ? "auto-rotate" : "rotate-on-hover"}
+              animationSpeed={p.highlighted ? 3.5 : 6}
+              gradientColors={bronzoPalette}
+              className={p.highlighted ? "card-featured" : ""}
               style={{
-                backgroundColor: p.highlighted
-                  ? "var(--surface-2)"
-                  : "var(--surface)",
-                border: p.highlighted
-                  ? "1px solid var(--green-cta)"
-                  : "1px solid var(--hairline)",
+                display: "block",
                 boxShadow: p.highlighted
                   ? "0 20px 48px rgba(200,145,58,0.18)"
                   : undefined,
               }}
             >
+            <div className="relative flex flex-col rounded-[19px] p-7">
               {/* Badge */}
               {p.badge && (
                 <span
@@ -172,9 +181,11 @@ export default function Prezzi() {
                 style={
                   !p.highlighted
                     ? {
+                        backgroundImage: "none",
                         backgroundColor: "transparent",
                         color: "var(--text)",
                         border: "1px solid var(--hairline)",
+                        animation: "none",
                       }
                     : undefined
                 }
@@ -182,6 +193,7 @@ export default function Prezzi() {
                 {p.cta}
               </a>
             </div>
+            </BorderRotate>
             </FadeUp>
           ))}
         </div>

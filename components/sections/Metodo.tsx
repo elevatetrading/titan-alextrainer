@@ -2,6 +2,13 @@
 
 import { useRef, useState, useEffect } from "react";
 import FadeUp from "@/components/ui/FadeUp";
+import { BorderRotate } from "@/components/ui/animated-gradient-border";
+
+const bronzoPalette = {
+  primary: '#261808',
+  secondary: '#C8913A',
+  accent: '#F0C860',
+};
 
 const blocchi = [
   {
@@ -56,7 +63,7 @@ export default function Metodo() {
     if (!container) return;
 
     const onScroll = () => {
-      const cards = container.querySelectorAll<HTMLElement>("[data-card]");
+      const cards = container.querySelectorAll<HTMLElement>(".metodo-card-wrapper");
       let closest = 0;
       let minDist = Infinity;
       cards.forEach((card, i) => {
@@ -76,7 +83,7 @@ export default function Metodo() {
   function goTo(i: number) {
     const container = scrollRef.current;
     if (!container) return;
-    const card = container.querySelectorAll<HTMLElement>("[data-card]")[i];
+    const card = container.querySelectorAll<HTMLElement>(".metodo-card-wrapper")[i];
     if (card) container.scrollTo({ left: card.offsetLeft, behavior: "smooth" });
   }
 
@@ -140,17 +147,24 @@ export default function Metodo() {
         }}
       >
         {blocchi.map((b, i) => (
-          <div
+          <BorderRotate
             key={b.numero}
-            data-card
+            className="metodo-card-wrapper"
+            borderWidth={1}
+            borderRadius={16}
+            backgroundColor="var(--surface)"
+            animationMode="rotate-on-hover"
+            animationSpeed={6}
+            gradientColors={bronzoPalette}
             style={{
               flexShrink: isDesktop ? 1 : 0,
               width: isDesktop ? "100%" : "min(calc(100vw - 3rem), 520px)",
               scrollSnapAlign: isDesktop ? "none" : "start",
               scrollSnapStop: isDesktop ? undefined : "always",
-              backgroundColor: "var(--surface)",
-              border: "1px solid var(--hairline)",
-              borderRadius: "16px",
+            }}
+          >
+          <div
+            style={{
               padding: "2rem 1.75rem",
               display: "flex",
               flexDirection: "column",
@@ -258,6 +272,7 @@ export default function Metodo() {
               </div>
             )}
           </div>
+          </BorderRotate>
         ))}
       </div>
 
