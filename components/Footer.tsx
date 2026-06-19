@@ -2,13 +2,13 @@ const navLinks = [
   { href: "#metodo", label: "Metodo" },
   { href: "#chi-ti-allena", label: "Chi ti allena" },
   { href: "#prezzi", label: "Prezzi" },
+  { href: "#shop", label: "Shop" },
   { href: "#contatti", label: "Contatti" },
 ];
 
 const legalLinks = [
   { href: "/privacy-policy.html", label: "Privacy Policy", external: false },
   { href: "/cookie-policy.html", label: "Cookie Policy", external: false },
-  { href: "https://metodo-titan.myshopify.com", label: "Shop →", external: true },
 ];
 
 export default function Footer() {
