@@ -108,7 +108,7 @@ export default function Header() {
             <a
               href="#contatti"
               className="btn-cta"
-              style={{ height: "38px", fontSize: "0.75rem", padding: "0 1.25rem" }}
+              style={{ height: "44px", fontSize: "0.75rem", padding: "0 1.25rem" }}
             >
               Richiedi la tua lezione gratuita
             </a>
