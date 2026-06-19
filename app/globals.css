@@ -4,8 +4,8 @@
   --bg-base: #0E0C0A;
   --surface: #141210;
   --surface-2: #1B1814;
-  --green-cta: #B0875B;
-  --green-cta-hover: #C09468;
+  --green-cta: #C8913A;
+  --green-cta-hover: #D9A445;
   --green-deep: #3A2512;
   --green-deep-2: #261808;
   --text: #F4F0E8;
@@ -63,13 +63,19 @@ body {
   letter-spacing: -0.01em;
 }
 
-/* CTA primaria — massa solida */
+/* CTA primaria — bronzo metallico */
 .btn-cta {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  background-color: var(--green-cta);
+  background: linear-gradient(160deg, #FDE098 0%, #E8A830 18%, #B87820 42%, #8C5C10 62%, #C89030 80%, #F0C860 100%);
+  box-shadow:
+    0 0 0 1px rgba(255,200,80,0.25),
+    0 2px 20px rgba(180,110,20,0.5),
+    0 6px 40px rgba(160,90,10,0.3),
+    inset 0 1.5px 0 rgba(255,235,140,0.6),
+    inset 0 -1px 0 rgba(80,40,0,0.4);
   color: var(--on-cta);
   font-family: var(--font-archivo), sans-serif;
   font-weight: 700;
@@ -81,18 +87,25 @@ body {
   padding: 0 2rem;
   border: none;
   cursor: pointer;
-  transition: background-color 150ms ease, transform 150ms ease;
+  transition: box-shadow 200ms ease, transform 150ms ease, filter 150ms ease;
   text-decoration: none;
   white-space: nowrap;
 }
 
 .btn-cta:hover {
-  background-color: var(--green-cta-hover);
+  filter: brightness(1.1) saturate(1.15) contrast(1.05);
+  box-shadow:
+    0 0 0 1px rgba(255,210,90,0.4),
+    0 4px 28px rgba(180,110,20,0.65),
+    0 8px 50px rgba(160,90,10,0.35),
+    inset 0 1.5px 0 rgba(255,245,160,0.75),
+    inset 0 -1px 0 rgba(80,40,0,0.5);
   transform: translateY(-2px);
 }
 
 .btn-cta:active {
   transform: translateY(0);
+  filter: brightness(0.96);
 }
 
 .btn-cta:disabled,
