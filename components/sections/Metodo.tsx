@@ -80,7 +80,7 @@ export default function Metodo() {
       <div className="max-w-6xl mx-auto px-5">
         {/* Brand name — grande e centrato */}
         <FadeUp delay={0}>
-        <p
+        <h2
           className="font-headline text-center mb-5"
           style={{
             fontSize: "clamp(2.75rem, 10vw, 6rem)",
@@ -90,19 +90,19 @@ export default function Metodo() {
         >
           Il Metodo{" "}
           <span style={{ color: "var(--green-cta)" }}>Titan</span>
-        </p>
+        </h2>
         </FadeUp>
 
         <FadeUp delay={0.1}>
         <p
-          className="text-center mb-12"
+          className="mb-12"
           style={{
             color: "var(--text-muted)",
             fontFamily: "var(--font-hanken)",
             fontSize: "1.0625rem",
             lineHeight: "1.65",
-            maxWidth: "520px",
-            margin: "0 auto 3rem",
+            maxWidth: "560px",
+            marginBottom: "3rem",
           }}
         >
           Quando il corpo regge, reggono le decisioni, lo stress e le giornate
