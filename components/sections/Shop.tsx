@@ -71,12 +71,12 @@ export default function Shop() {
           </div>
         </FadeUp>
 
-        {/* Griglia prodotti */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl">
+        {/* Griglia prodotti — sempre 2 colonne */}
+        <div className="grid grid-cols-2 gap-3 md:gap-6 max-w-2xl">
           {prodotti.map((p, i) => (
             <FadeUp key={p.id} delay={0.1 + i * 0.1}>
               <article
-                className="flex flex-col rounded-[20px] overflow-hidden"
+                className="flex flex-col rounded-2xl overflow-hidden h-full"
                 style={{
                   backgroundColor: "var(--bg-base)",
                   border: "1px solid var(--hairline)",
@@ -85,23 +85,24 @@ export default function Shop() {
                 {/* Immagine prodotto */}
                 <div
                   className="relative w-full"
-                  style={{ aspectRatio: "16 / 9" }}
+                  style={{ aspectRatio: "1 / 1" }}
                 >
                   <Image
                     src={p.immagine}
                     alt={p.titolo}
                     fill
                     style={{ objectFit: "cover" }}
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 50vw, 25vw"
                   />
                 </div>
 
                 {/* Contenuto */}
-                <div className="flex flex-col gap-3 p-6 flex-1">
+                <div className="flex flex-col gap-2 p-3 md:p-5 flex-1">
                   {/* Tag */}
                   <span
-                    className="text-xs uppercase tracking-widest"
+                    className="uppercase tracking-widest"
                     style={{
+                      fontSize: "0.6rem",
                       color: "var(--green-cta)",
                       fontFamily: "var(--font-hanken)",
                       fontWeight: 600,
@@ -112,42 +113,32 @@ export default function Shop() {
 
                   {/* Titolo */}
                   <h3
-                    className="font-archivo text-xl leading-snug"
-                    style={{ color: "var(--text)" }}
+                    className="font-archivo leading-snug"
+                    style={{
+                      fontSize: "clamp(0.85rem, 2.5vw, 1.25rem)",
+                      color: "var(--text)",
+                    }}
                   >
                     {p.titolo}
                   </h3>
 
-                  {/* Tagline */}
+                  {/* Descrizione — nascosta su mobile piccolo */}
                   <p
-                    className="text-sm"
-                    style={{
-                      color: "var(--green-cta)",
-                      fontFamily: "var(--font-hanken)",
-                      fontWeight: 600,
-                      letterSpacing: "0.02em",
-                    }}
-                  >
-                    {p.tagline}
-                  </p>
-
-                  {/* Descrizione */}
-                  <p
-                    className="text-sm leading-relaxed flex-1"
+                    className="hidden sm:block text-xs leading-relaxed flex-1"
                     style={{
                       color: "var(--text-muted)",
                       fontFamily: "var(--font-hanken)",
                     }}
                   >
-                    {p.descrizione}
+                    {p.tagline}
                   </p>
 
                   {/* Prezzo + CTA */}
-                  <div className="flex items-center justify-between mt-2">
+                  <div className="flex items-center justify-between mt-auto pt-2">
                     <span
                       className="font-headline"
                       style={{
-                        fontSize: "1.75rem",
+                        fontSize: "clamp(1.1rem, 3vw, 1.5rem)",
                         color: "var(--text)",
                         lineHeight: 1,
                       }}
@@ -159,7 +150,12 @@ export default function Shop() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-cta"
-                      style={{ height: "42px", fontSize: "0.78rem", padding: "0 1.25rem" }}
+                      style={{
+                        height: "34px",
+                        fontSize: "0.65rem",
+                        padding: "0 0.75rem",
+                        borderRadius: "6px",
+                      }}
                     >
                       Acquista
                     </a>

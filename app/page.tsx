@@ -20,8 +20,8 @@ export default function Home() {
         <Metodo />
         <ChiTiAllena />
         <Prezzi />
-        <LeVoci />
         <Shop />
+        <LeVoci />
         <PrimaSessione />
       </main>
       <Footer />
