@@ -77,7 +77,7 @@ export default function Prezzi() {
                   ? "1px solid var(--green-cta)"
                   : "1px solid var(--hairline)",
                 boxShadow: p.highlighted
-                  ? "0 20px 48px rgba(31,122,82,0.14)"
+                  ? "0 20px 48px rgba(176,135,91,0.18)"
                   : undefined,
               }}
             >
