@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 
 const navLinks = [
   { href: "#metodo", label: "Metodo" },
@@ -76,12 +77,8 @@ export default function Header() {
         }}
       >
         <div className="max-w-6xl mx-auto px-5 flex items-center justify-between h-14">
-          <a
-            href="/"
-            className="font-headline text-xl tracking-widest"
-            style={{ color: "var(--text)", textDecoration: "none" }}
-          >
-            TITAN
+          <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+            <Image src="/logo-ag.png" alt="Titan — Alessandro Giua" width={44} height={44} style={{ filter: "brightness(0) invert(1)" }} priority />
           </a>
           <nav className="flex items-center gap-8">
             {navLinks.map((link) => (
@@ -116,22 +113,20 @@ export default function Header() {
         </div>
       </header>
 
-      {/* ── Mobile: TITAN — galleggia sull'hero, sparisce dopo scroll ── */}
+      {/* ── Mobile: logo AG — galleggia sull'hero, sparisce dopo scroll ── */}
       <a
         href="/"
-        className="md:hidden fixed z-[60] font-headline tracking-widest"
+        className="md:hidden fixed z-[60]"
         style={{
-          top: "0.875rem",
+          top: "0.625rem",
           left: "1.25rem",
-          fontSize: "1.25rem",
-          color: "var(--text)",
           textDecoration: "none",
           opacity: scrolled ? 0 : 1,
           pointerEvents: scrolled ? "none" : "auto",
           transition: "opacity 250ms ease",
         }}
       >
-        TITAN
+        <Image src="/logo-ag.png" alt="Titan — Alessandro Giua" width={40} height={40} style={{ filter: "brightness(0) invert(1)" }} priority />
       </a>
 
       {/* ── Mobile: hamburger — sempre visibile, nessuno sfondo ── */}
