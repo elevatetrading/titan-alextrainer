@@ -132,7 +132,7 @@ export default function Shop() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-cta"
-                    style={{ height: "42px", fontSize: "0.78rem", padding: "0 1.25rem" }}
+                    style={{ height: "44px", fontSize: "0.78rem", padding: "0 1.25rem" }}
                   >
                     Acquista
                   </a>
@@ -181,7 +181,7 @@ export default function Shop() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-cta"
-                      style={{ height: "42px", fontSize: "0.78rem", padding: "0 1.25rem" }}
+                      style={{ height: "44px", fontSize: "0.78rem", padding: "0 1.25rem" }}
                     >
                       Acquista
                     </a>
