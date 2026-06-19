@@ -258,17 +258,29 @@ export default function Metodo() {
             onClick={() => goTo(i)}
             aria-label={`Vai a ${blocchi[i].titolo}`}
             style={{
-              width: active === i ? "28px" : "8px",
-              height: "8px",
-              borderRadius: "4px",
-              backgroundColor:
-                active === i ? "var(--green-cta)" : "var(--hairline)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "44px",
+              height: "44px",
+              background: "none",
               border: "none",
-              padding: 0,
               cursor: "pointer",
-              transition: "width 300ms ease, background-color 300ms ease",
+              padding: 0,
             }}
-          />
+          >
+            <span
+              style={{
+                display: "block",
+                width: active === i ? "28px" : "8px",
+                height: "8px",
+                borderRadius: "4px",
+                backgroundColor:
+                  active === i ? "var(--green-cta)" : "var(--hairline)",
+                transition: "width 300ms ease, background-color 300ms ease",
+              }}
+            />
+          </button>
         ))}
       </div>
     </section>
