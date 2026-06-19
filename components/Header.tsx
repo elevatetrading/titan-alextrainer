@@ -127,7 +127,7 @@ export default function Header() {
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logo-ag.svg" alt="Titan — Alessandro Giua" height={10} style={{ filter: "brightness(0) invert(1)", display: "block" }} />
+        <img src="/logo-ag.svg" alt="Titan — Alessandro Giua" style={{ filter: "brightness(0) invert(1)", display: "block", height: "16px", width: "auto" }} />
       </a>
 
       {/* ── Mobile: hamburger — sempre visibile, nessuno sfondo ── */}
