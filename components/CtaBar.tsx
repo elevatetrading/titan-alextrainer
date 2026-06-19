@@ -6,7 +6,7 @@ export default function CtaBar() {
   const [visible, setVisible] = useState(false);
   const [compact, setCompact] = useState(false);
   const lastScrollY = useRef(0);
-  const state = useRef({ pastHero: false, atContatti: false });
+  const state = useRef({ pastHero: false, atContatti: false, atFooter: false });
 
   useEffect(() => {
     const hero = document.getElementById("hero");
@@ -16,7 +16,11 @@ export default function CtaBar() {
     const heroEl = hero as HTMLElement;
 
     function sync() {
-      setVisible(state.current.pastHero && !state.current.atContatti);
+      setVisible(
+        state.current.pastHero &&
+          !state.current.atContatti &&
+          !state.current.atFooter
+      );
     }
 
     // Scroll: traccia hero + compact
@@ -36,6 +40,7 @@ export default function CtaBar() {
     // Nasconde quando #contatti entra in viewport (10% visibile).
     // A quel punto il bottone è già inutile — l'utente è arrivato al form.
     // Questo è sopra il footer, quindi i link del footer non vengono mai coperti.
+    // Nasconde quando #contatti entra in viewport
     const observer = new IntersectionObserver(
       ([entry]) => {
         state.current.atContatti = entry.isIntersecting;
@@ -45,9 +50,22 @@ export default function CtaBar() {
     );
     observer.observe(contatti);
 
+    // Nasconde anche quando il footer entra in viewport
+    // (caso: utente scrolla oltre #contatti → contatti esce → senza questo la bar ricompare sul footer)
+    const footer = document.getElementById("site-footer");
+    const footerObserver = new IntersectionObserver(
+      ([entry]) => {
+        state.current.atFooter = entry.isIntersecting;
+        sync();
+      },
+      { threshold: 0.01 }
+    );
+    if (footer) footerObserver.observe(footer);
+
     return () => {
       window.removeEventListener("scroll", onScroll);
       observer.disconnect();
+      footerObserver.disconnect();
     };
   }, []);
 
