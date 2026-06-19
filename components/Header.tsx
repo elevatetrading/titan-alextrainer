@@ -6,6 +6,7 @@ const navLinks = [
   { href: "#metodo", label: "Metodo" },
   { href: "#chi-ti-allena", label: "Chi ti allena" },
   { href: "#prezzi", label: "Prezzi" },
+  { href: "#shop", label: "Shop" },
   { href: "#contatti", label: "Contatti" },
 ];
 

@@ -6,6 +6,7 @@ import Metodo from "@/components/sections/Metodo";
 import ChiTiAllena from "@/components/sections/ChiTiAllena";
 import Prezzi from "@/components/sections/Prezzi";
 import LeVoci from "@/components/sections/LeVoci";
+import Shop from "@/components/sections/Shop";
 import PrimaSessione from "@/components/sections/PrimaSessione";
 import Footer from "@/components/Footer";
 
@@ -20,6 +21,7 @@ export default function Home() {
         <ChiTiAllena />
         <Prezzi />
         <LeVoci />
+        <Shop />
         <PrimaSessione />
       </main>
       <Footer />
