@@ -6,7 +6,6 @@ export default function CtaBar() {
   const [visible, setVisible] = useState(false);
   const [compact, setCompact] = useState(false);
   const lastScrollY = useRef(0);
-  // Absolute Y of #contatti top in the document (computed once, refreshed on resize)
   const contattiY = useRef<number>(Infinity);
 
   useEffect(() => {
@@ -23,13 +22,16 @@ export default function CtaBar() {
     function update() {
       const pastHero = hero!.getBoundingClientRect().bottom < 0;
 
-      // clientHeight is stable on iOS Safari (doesn't fluctuate with address bar).
-      // Buffer: hide the bar 120px BEFORE contatti enters viewport — prevents
-      // the iOS address-bar-resize causing a momentary re-appearance.
+      // Nasconde appena si avvicina al form — buffer 120px per iOS Safari
       const vh = document.documentElement.clientHeight;
       const atContact = window.scrollY >= contattiY.current - vh - 120;
 
-      setVisible(pastHero && !atContact);
+      // Non appare mai mentre il cookie banner è visibile (evita conflitti visivi su iOS)
+      const cookieBanner = document.querySelector(
+        '[role="dialog"][aria-label="Cookie policy"]'
+      );
+
+      setVisible(pastHero && !atContact && !cookieBanner);
     }
 
     function onScroll() {
