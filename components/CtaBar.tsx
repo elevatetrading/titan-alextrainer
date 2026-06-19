@@ -76,14 +76,13 @@ export default function CtaBar() {
           fontWeight: 700,
           letterSpacing: "0.06em",
           textTransform: "uppercase",
-          padding: "0 0.875rem",
+          padding: "0 8px",
           height: "52px",
           borderRadius: "8px",
-          fontSize: compact ? "0.75rem" : "0.875rem",
+          fontSize: "0.75rem",
           whiteSpace: "nowrap",
           overflow: "hidden",
           boxShadow: "0 4px 24px rgba(0,0,0,0.45)",
-          transition: "font-size 200ms ease",
         }}
       >
         {compact ? "PRENOTA" : "Richiedi la tua lezione gratuita"}
