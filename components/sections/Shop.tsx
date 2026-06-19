@@ -71,78 +71,109 @@ export default function Shop() {
           </div>
         </FadeUp>
 
-        {/* Griglia prodotti — sempre 2 colonne */}
-        <div className="grid grid-cols-2 gap-3 md:gap-6 max-w-2xl">
+        {/* Mobile: carousel con peek — Desktop: griglia 2 col */}
+        <div
+          className="md:hidden hide-scrollbar"
+          style={{
+            display: "flex",
+            overflowX: "auto",
+            scrollSnapType: "x mandatory",
+            WebkitOverflowScrolling: "touch",
+            gap: "1rem",
+            paddingRight: "1.25rem",
+            marginLeft: "-1.25rem",
+            paddingLeft: "1.25rem",
+          }}
+        >
+          {prodotti.map((p) => (
+            <article
+              key={p.id}
+              style={{
+                flexShrink: 0,
+                width: "calc(100vw - 5rem)",
+                scrollSnapAlign: "start",
+                scrollSnapStop: "always",
+                backgroundColor: "var(--bg-base)",
+                border: "1px solid var(--hairline)",
+                borderRadius: "20px",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <div className="relative w-full" style={{ aspectRatio: "16 / 9" }}>
+                <Image
+                  src={p.immagine}
+                  alt={p.titolo}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  sizes="calc(100vw - 5rem)"
+                />
+              </div>
+              <div className="flex flex-col gap-3 p-5 flex-1">
+                <span
+                  className="text-xs uppercase tracking-widest"
+                  style={{ color: "var(--green-cta)", fontFamily: "var(--font-hanken)", fontWeight: 600 }}
+                >
+                  {p.tag}
+                </span>
+                <h3 className="font-archivo text-xl leading-snug" style={{ color: "var(--text)" }}>
+                  {p.titolo}
+                </h3>
+                <p className="text-sm leading-relaxed flex-1" style={{ color: "var(--text-muted)", fontFamily: "var(--font-hanken)" }}>
+                  {p.descrizione}
+                </p>
+                <div className="flex items-center justify-between mt-1">
+                  <span className="font-headline" style={{ fontSize: "1.75rem", color: "var(--text)", lineHeight: 1 }}>
+                    {p.prezzo}€
+                  </span>
+                  <a
+                    href={p.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-cta"
+                    style={{ height: "42px", fontSize: "0.78rem", padding: "0 1.25rem" }}
+                  >
+                    Acquista
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {/* Desktop: griglia 2 col */}
+        <div className="hidden md:grid md:grid-cols-2 gap-6 max-w-2xl">
           {prodotti.map((p, i) => (
             <FadeUp key={p.id} delay={0.1 + i * 0.1}>
               <article
-                className="flex flex-col rounded-2xl overflow-hidden h-full"
-                style={{
-                  backgroundColor: "var(--bg-base)",
-                  border: "1px solid var(--hairline)",
-                }}
+                className="flex flex-col rounded-[20px] overflow-hidden h-full"
+                style={{ backgroundColor: "var(--bg-base)", border: "1px solid var(--hairline)" }}
               >
-                {/* Immagine prodotto */}
-                <div
-                  className="relative w-full"
-                  style={{ aspectRatio: "1 / 1" }}
-                >
+                <div className="relative w-full" style={{ aspectRatio: "16 / 9" }}>
                   <Image
                     src={p.immagine}
                     alt={p.titolo}
                     fill
                     style={{ objectFit: "cover" }}
-                    sizes="(max-width: 768px) 50vw, 25vw"
+                    sizes="25vw"
                   />
                 </div>
-
-                {/* Contenuto */}
-                <div className="flex flex-col gap-2 p-3 md:p-5 flex-1">
-                  {/* Tag */}
+                <div className="flex flex-col gap-3 p-6 flex-1">
                   <span
-                    className="uppercase tracking-widest"
-                    style={{
-                      fontSize: "0.6rem",
-                      color: "var(--green-cta)",
-                      fontFamily: "var(--font-hanken)",
-                      fontWeight: 600,
-                    }}
+                    className="text-xs uppercase tracking-widest"
+                    style={{ color: "var(--green-cta)", fontFamily: "var(--font-hanken)", fontWeight: 600 }}
                   >
                     {p.tag}
                   </span>
-
-                  {/* Titolo */}
-                  <h3
-                    className="font-archivo leading-snug"
-                    style={{
-                      fontSize: "clamp(0.85rem, 2.5vw, 1.25rem)",
-                      color: "var(--text)",
-                    }}
-                  >
+                  <h3 className="font-archivo text-xl leading-snug" style={{ color: "var(--text)" }}>
                     {p.titolo}
                   </h3>
-
-                  {/* Descrizione — nascosta su mobile piccolo */}
-                  <p
-                    className="hidden sm:block text-xs leading-relaxed flex-1"
-                    style={{
-                      color: "var(--text-muted)",
-                      fontFamily: "var(--font-hanken)",
-                    }}
-                  >
-                    {p.tagline}
+                  <p className="text-sm leading-relaxed flex-1" style={{ color: "var(--text-muted)", fontFamily: "var(--font-hanken)" }}>
+                    {p.descrizione}
                   </p>
-
-                  {/* Prezzo + CTA */}
-                  <div className="flex items-center justify-between mt-auto pt-2">
-                    <span
-                      className="font-headline"
-                      style={{
-                        fontSize: "clamp(1.1rem, 3vw, 1.5rem)",
-                        color: "var(--text)",
-                        lineHeight: 1,
-                      }}
-                    >
+                  <div className="flex items-center justify-between mt-2">
+                    <span className="font-headline" style={{ fontSize: "1.75rem", color: "var(--text)", lineHeight: 1 }}>
                       {p.prezzo}€
                     </span>
                     <a
@@ -150,12 +181,7 @@ export default function Shop() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn-cta"
-                      style={{
-                        height: "34px",
-                        fontSize: "0.65rem",
-                        padding: "0 0.75rem",
-                        borderRadius: "6px",
-                      }}
+                      style={{ height: "42px", fontSize: "0.78rem", padding: "0 1.25rem" }}
                     >
                       Acquista
                     </a>
