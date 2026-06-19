@@ -47,47 +47,43 @@ export default function CtaBar() {
     };
   }, []);
 
+  // Nessun container: solo il bottone fixed centrato.
+  // left:50% + translateX(-50%) = centrato senza nessun wrapper.
+  // Quando nascosto scende di 100%+safe-area — completamente fuori schermo.
   return (
-    <div
-      className="md:hidden fixed left-0 right-0 bottom-0"
+    <a
+      href="#contatti"
+      className="md:hidden fixed"
       style={{
         zIndex: 50,
-        display: "flex",
+        left: "50%",
+        bottom: "calc(0.75rem + env(safe-area-inset-bottom, 0px))",
+        display: "inline-flex",
+        alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "var(--bg-base)",
-        borderTop: "1px solid var(--hairline)",
-        padding: "0.75rem 1rem",
-        paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom, 0px))",
-        transform: visible ? "translateY(0)" : "translateY(110%)",
+        backgroundColor: "var(--green-cta)",
+        color: "var(--on-cta)",
+        textDecoration: "none",
+        fontFamily: "var(--font-archivo)",
+        fontWeight: 700,
+        letterSpacing: "0.06em",
+        textTransform: "uppercase",
+        padding: "0 1rem",
+        height: "52px",
+        borderRadius: "8px",
+        fontSize: "0.75rem",
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        transform: visible
+          ? "translateX(-50%) translateY(0)"
+          : "translateX(-50%) translateY(calc(100% + 2.5rem + env(safe-area-inset-bottom, 0px)))",
         transition: visible
           ? "transform 480ms cubic-bezier(0.34, 1.4, 0.64, 1)"
           : "transform 280ms ease-in",
         pointerEvents: visible ? "auto" : "none",
       }}
     >
-      <a
-        href="#contatti"
-        style={{
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "var(--green-cta)",
-          color: "var(--on-cta)",
-          textDecoration: "none",
-          fontFamily: "var(--font-archivo)",
-          fontWeight: 700,
-          letterSpacing: "0.06em",
-          textTransform: "uppercase",
-          padding: "0 8px",
-          height: "52px",
-          borderRadius: "8px",
-          fontSize: "0.75rem",
-          whiteSpace: "nowrap",
-          overflow: "hidden",
-        }}
-      >
-        {compact ? "PRENOTA" : "Richiedi la tua lezione gratuita"}
-      </a>
-    </div>
+      {compact ? "PRENOTA" : "Richiedi la tua lezione gratuita"}
+    </a>
   );
 }
