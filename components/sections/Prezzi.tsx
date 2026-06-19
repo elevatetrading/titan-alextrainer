@@ -181,11 +181,9 @@ export default function Prezzi() {
                 style={
                   !p.highlighted
                     ? {
-                        backgroundImage: "none",
-                        backgroundColor: "transparent",
+                        background: "transparent",
                         color: "var(--text)",
                         border: "1px solid var(--hairline)",
-                        animation: "none",
                       }
                     : undefined
                 }
