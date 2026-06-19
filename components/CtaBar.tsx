@@ -55,10 +55,9 @@ export default function CtaBar() {
         display: "flex",
         justifyContent: "center",
         backgroundColor: "var(--bg-base)",
-        paddingTop: "0.75rem",
-        paddingLeft: "1rem",
-        paddingRight: "1rem",
-        paddingBottom: "env(safe-area-inset-bottom, 0px)",
+        borderTop: "1px solid var(--hairline)",
+        padding: "0.75rem 1rem",
+        paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom, 0px))",
         transform: visible ? "translateY(0)" : "translateY(110%)",
         transition: visible
           ? "transform 480ms cubic-bezier(0.34, 1.4, 0.64, 1)"
