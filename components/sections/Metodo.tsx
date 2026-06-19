@@ -111,10 +111,10 @@ export default function Metodo() {
         </FadeUp>
       </div>
 
-      {/* Carousel */}
+      {/* Carousel su mobile, blocchi verticali su desktop */}
       <div
         ref={scrollRef}
-        className="hide-scrollbar"
+        className="hide-scrollbar metodo-carousel"
         style={{
           display: "flex",
           overflowX: "auto",
@@ -129,6 +129,7 @@ export default function Metodo() {
           <div
             key={b.numero}
             data-card
+            className="metodo-card"
             style={{
               flexShrink: 0,
               width: "min(calc(100vw - 3rem), 520px)",
