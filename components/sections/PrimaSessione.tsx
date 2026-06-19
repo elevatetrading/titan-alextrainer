@@ -242,8 +242,11 @@ export default function PrimaSessione() {
                           pacchetto: selected ? "" : opt,
                         })
                       }
-                      className="px-4 py-2 rounded-md text-sm transition-all"
+                      className="px-4 rounded-md text-sm transition-all"
                       style={{
+                        minHeight: "44px",
+                        display: "inline-flex",
+                        alignItems: "center",
                         backgroundColor: selected
                           ? "var(--green-cta)"
                           : "var(--surface)",
