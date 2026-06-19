@@ -118,8 +118,8 @@ export default function Header() {
         href="/"
         className="md:hidden fixed z-[60]"
         style={{
-          top: "0.625rem",
-          left: "1.25rem",
+          top: "0.375rem",
+          left: "0.5rem",
           textDecoration: "none",
           opacity: scrolled ? 0 : 1,
           pointerEvents: scrolled ? "none" : "auto",
@@ -127,7 +127,7 @@ export default function Header() {
         }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/logo-ag.svg" alt="Titan — Alessandro Giua" height={32} style={{ filter: "brightness(0) invert(1)", display: "block" }} />
+        <img src="/logo-ag.svg" alt="Titan — Alessandro Giua" height={22} style={{ filter: "brightness(0) invert(1)", display: "block" }} />
       </a>
 
       {/* ── Mobile: hamburger — sempre visibile, nessuno sfondo ── */}
