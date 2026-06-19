@@ -1,4 +1,4 @@
-import HeroVideo from "@/components/sections/HeroVideo";
+import Image from "next/image";
 
 export default function Hero() {
   return (
@@ -7,9 +7,22 @@ export default function Hero() {
       className="relative flex flex-col justify-end overflow-hidden"
       style={{ minHeight: "100svh", backgroundColor: "var(--bg-base)" }}
     >
-      {/* Video loop — cicla tra i clip ogni 3 secondi */}
+      {/* Foto di Alessandro */}
       <div className="absolute inset-0" aria-hidden="true">
-        <HeroVideo />
+        <Image
+          src="/alex-hero.jpg"
+          alt="Alessandro Giua — personal trainer a Olbia"
+          fill
+          priority
+          quality={90}
+          style={{
+            objectFit: "cover",
+            objectPosition: "55% 25%",
+            filter: "blur(1px)",
+            transform: "scale(1.04)",
+          }}
+          sizes="100vw"
+        />
       </div>
 
       {/* Gradiente bottom */}
