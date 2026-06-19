@@ -71,7 +71,7 @@ export default function Footer() {
             >
               Navigazione
             </p>
-            <nav className="flex flex-col gap-2.5">
+            <nav className="flex flex-col">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
@@ -82,6 +82,11 @@ export default function Footer() {
                     fontFamily: "var(--font-hanken)",
                     opacity: 0.8,
                     textDecoration: "none",
+                    display: "flex",
+                    alignItems: "center",
+                    minHeight: "44px",
+                    paddingTop: "0.25rem",
+                    paddingBottom: "0.25rem",
                   }}
                 >
                   {link.label}
@@ -102,7 +107,7 @@ export default function Footer() {
             >
               Legale
             </p>
-            <nav className="flex flex-col gap-2.5">
+            <nav className="flex flex-col">
               {legalLinks.map((link) => (
                 <a
                   key={link.href}
@@ -113,6 +118,11 @@ export default function Footer() {
                     fontFamily: "var(--font-hanken)",
                     opacity: 0.8,
                     textDecoration: "none",
+                    display: "flex",
+                    alignItems: "center",
+                    minHeight: "44px",
+                    paddingTop: "0.25rem",
+                    paddingBottom: "0.25rem",
                   }}
                   {...(link.external
                     ? { target: "_blank", rel: "noopener noreferrer" }
