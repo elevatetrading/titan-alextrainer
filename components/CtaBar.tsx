@@ -6,27 +6,25 @@ export default function CtaBar() {
   const [visible, setVisible] = useState(false);
   const [compact, setCompact] = useState(false);
   const lastScrollY = useRef(0);
-  const state = useRef({ pastHero: false, atContatti: false, atFooter: false });
 
   useEffect(() => {
     const hero = document.getElementById("hero");
     const contatti = document.getElementById("contatti");
     if (!hero || !contatti) return;
 
-    const heroEl = hero as HTMLElement;
+    function update() {
+      const heroBottom = hero!.getBoundingClientRect().bottom;
+      const pastHero = heroBottom < 0;
 
-    function sync() {
-      setVisible(
-        state.current.pastHero &&
-          !state.current.atContatti &&
-          !state.current.atFooter
-      );
+      // Nasconde appena #contatti (il form) o il footer entrano in viewport dal basso
+      const contattiTop = contatti!.getBoundingClientRect().top;
+      const atContact = contattiTop < window.innerHeight;
+
+      setVisible(pastHero && !atContact);
     }
 
-    // Scroll: traccia hero + compact
     function onScroll() {
-      state.current.pastHero = heroEl.getBoundingClientRect().bottom < 0;
-      sync();
+      update();
 
       const y = window.scrollY;
       if (y < lastScrollY.current - 8) setCompact(true);
@@ -35,37 +33,10 @@ export default function CtaBar() {
     }
 
     window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-
-    // Nasconde quando #contatti entra in viewport (10% visibile).
-    // A quel punto il bottone è già inutile — l'utente è arrivato al form.
-    // Questo è sopra il footer, quindi i link del footer non vengono mai coperti.
-    // Nasconde quando #contatti entra in viewport
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        state.current.atContatti = entry.isIntersecting;
-        sync();
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(contatti);
-
-    // Nasconde anche quando il footer entra in viewport
-    // (caso: utente scrolla oltre #contatti → contatti esce → senza questo la bar ricompare sul footer)
-    const footer = document.getElementById("site-footer");
-    const footerObserver = new IntersectionObserver(
-      ([entry]) => {
-        state.current.atFooter = entry.isIntersecting;
-        sync();
-      },
-      { threshold: 0.01 }
-    );
-    if (footer) footerObserver.observe(footer);
+    update();
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      observer.disconnect();
-      footerObserver.disconnect();
     };
   }, []);
 
